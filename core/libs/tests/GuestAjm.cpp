@@ -2451,5 +2451,38 @@ int main() {
     TestConsoleSingleFrameRun(context);
     TestConsoleStaleHeaderBits(context);
     Require(sceAjmDecWVorbisCreateHeaderPacket(nullptr) == static_cast<int>(0x8A6E0001));
+    Require(sceAjmInstanceCodecType(0x00014000) == 5);
+    Require(sceAjmInstanceCodecType(0) == 0);
+    Require(sceAjmInstanceCodecType(0x00028000) == 10);
+    try {
+        sceAjmBatchGetLog();
+        Require(false);
+    } catch (const std::runtime_error& error) {
+        Require(std::string(error.what()) == "sceAjmBatchGetLog not implemented");
+    }
+    try {
+        sceAjmInstanceAvailable();
+        Require(false);
+    } catch (const std::runtime_error& error) {
+        Require(std::string(error.what()) == "sceAjmInstanceAvailable not implemented");
+    }
+    try {
+        sceAjmInstanceExtend(0, 0, 0, 0);
+        Require(false);
+    } catch (const std::runtime_error& error) {
+        Require(std::string(error.what()) == "sceAjmInstanceExtend not implemented");
+    }
+    try {
+        sceAjmInstanceSwitch(0, 0, 0, 0);
+        Require(false);
+    } catch (const std::runtime_error& error) {
+        Require(std::string(error.what()) == "sceAjmInstanceSwitch not implemented");
+    }
+    try {
+        sceAjmDecWVorbisCreateSetupPacket(nullptr);
+        Require(false);
+    } catch (const std::runtime_error& error) {
+        Require(std::string(error.what()) == "sceAjmDecWVorbisCreateSetupPacket not implemented");
+    }
     Require(sceAjmFinalize(context) == 0);
 }
