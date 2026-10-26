@@ -1,6 +1,9 @@
 #include "SceTypes.hpp"
 #include "prx/libkernel_sys/libkernel_sys.hpp"
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
+#include "prx/libkernel/include/Api.hpp"
 
 namespace {
 
@@ -11,6 +14,16 @@ constexpr int SCE_KERNEL_ERROR_ENOTSUP = static_cast<int>(0x8002002d);
 constexpr int SCE_KERNEL_ERROR_ENOSYS = static_cast<int>(0x8002004e);
 
 void Require(bool value) { if (!value) std::abort(); }
+
+template <typename TCall>
+bool ReportsNotImplemented(const char* name, TCall call) {
+    try {
+        call();
+    } catch (const std::runtime_error& error) {
+        return std::string(error.what()) == std::string(name) + " not implemented";
+    }
+    return false;
+}
 
 }
 
@@ -41,5 +54,10 @@ int main() {
     Require(sceKernelClearGameDirectMemory() == SCE_KERNEL_ERROR_ENOSYS);
     Require(sceKernelMapTraceMemory() == SCE_KERNEL_ERROR_ENOSYS);
     Require(sceKernelTraceMemoryTypeProtect() == SCE_KERNEL_ERROR_ENOSYS);
+
+    Require(ReportsNotImplemented("physhm_open", [] { return physhm_open_nid_postfix(); }));
+    Require(ReportsNotImplemented("physhm_unlink", [] { return physhm_unlink_nid_postfix(); }));
+    Require(ReportsNotImplemented("sceKernelGetProcessAbiType", [] { return sceKernelGetProcessAbiType(); }));
+    Require(ReportsNotImplemented("sceKernelPrintBacktraceWithModuleInfo", [] { return sceKernelPrintBacktraceWithModuleInfo(); }));
     return 0;
 }
