@@ -10,6 +10,44 @@
 
 static void Require(bool value) { if (!value) std::abort(); }
 
+static void CheckMaxValue() {
+    const std::uint64_t edges[] = {0, 1, 0xffffffff, 0x100000000, 0x7fffffffffffffff, 0x8000000000000000, 0xfffffffffffffffe, 0xffffffffffffffff};
+    for (const auto& left : edges) {
+        Require(__std_max_8u_nid_postfix(&left, &left + 1) == left);
+        for (const auto& right : edges) {
+            const std::uint64_t pair[] = {left, right};
+            Require(__std_max_8u_nid_postfix(pair, pair + 2) == std::max(left, right));
+        }
+    }
+    std::uint64_t state = 0x521cadf08e47396b;
+    for (const std::size_t count : {1, 2, 3, 4, 7, 8, 15, 16, 17, 31, 32, 33, 63, 64, 65, 127, 128, 129, 257}) {
+        std::vector<std::uint64_t> values(count);
+        for (auto& value : values) {
+            state ^= state << 13;
+            state ^= state >> 7;
+            state ^= state << 17;
+            value = state;
+        }
+        const auto expected = *std::max_element(values.begin(), values.end());
+        for (std::size_t offset = 0; offset < 32; ++offset) {
+            std::vector<unsigned char> storage(count * sizeof(std::uint64_t) + 64, 0);
+            std::memcpy(storage.data() + offset, values.data(), count * sizeof(std::uint64_t));
+            const auto original = storage;
+            Require(__std_max_8u_nid_postfix(storage.data() + offset, storage.data() + offset + count * sizeof(std::uint64_t)) == expected);
+            Require(storage == original);
+        }
+        std::fill(values.begin(), values.end(), 0);
+        Require(__std_max_8u_nid_postfix(values.data(), values.data() + count) == 0);
+        for (std::size_t position = 0; position < count; ++position) {
+            values[position] = 0x100000005;
+            Require(__std_max_8u_nid_postfix(values.data(), values.data() + count) == 0x100000005);
+            values[position] = 0;
+        }
+    }
+    const std::uint64_t repeated[] = {9, 9, 9, 9};
+    Require(__std_max_8u_nid_postfix(repeated, repeated + 4) == 9);
+}
+
 static void CheckMinValue() {
     const std::uint64_t edges[] = {0, 1, 0xffffffff, 0x100000000, 0x7fffffffffffffff, 0x8000000000000000, 0xfffffffffffffffe, 0xffffffffffffffff};
     for (const auto& left : edges) {
@@ -179,6 +217,7 @@ static void CheckReverseAndSwap() {
 
 int main() {
     CheckMinValue();
+    CheckMaxValue();
     CheckSizedHelpers();
     CheckFindAndCount();
     CheckUnsizedRescan();
