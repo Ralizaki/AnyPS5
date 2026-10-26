@@ -148,6 +148,37 @@ void TestCapture() {
     std::filesystem::remove(path);
 }
 
+void TestUnimplemented() {
+    Require(ReportsNotImplemented("sceAudioInDeviceIdOpen", [] { return sceAudioInDeviceIdOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceIdAsyncOpen", [] { return sceAudioInDeviceIdAsyncOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInSetUsbGain", [] { return sceAudioInSetUsbGain(); }));
+    Require(ReportsNotImplemented("sceAudioInIsSharedDevice", [] { return sceAudioInIsSharedDevice(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceIdHqOpen", [] { return sceAudioInDeviceIdHqOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceHqOpen", [] { return sceAudioInDeviceHqOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInSetConnections", [] { return sceAudioInSetConnections(); }));
+    Require(ReportsNotImplemented("sceAudioInSetPortConnections", [] { return sceAudioInSetPortConnections(); }));
+    Require(ReportsNotImplemented("sceAudioInSetPortStatuses", [] { return sceAudioInSetPortStatuses(); }));
+    Require(ReportsNotImplemented("sceAudioInGetHandleStatusInfo", [] { return sceAudioInGetHandleStatusInfo(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceOpenEx", [] { return sceAudioInDeviceOpenEx(); }));
+    Require(ReportsNotImplemented("sceAudioInChangeAppModuleState", [] { return sceAudioInChangeAppModuleState(); }));
+    Require(ReportsNotImplemented("sceAudioInSetSparkParam", [] { return sceAudioInSetSparkParam(); }));
+    Require(ReportsNotImplemented("sceAudioInSetSparkSideTone", [] { return sceAudioInSetSparkSideTone(); }));
+    Require(ReportsNotImplemented("sceAudioInSetMicLevel", [] { return sceAudioInSetMicLevel(); }));
+    Require(ReportsNotImplemented("sceAudioInSetDeviceMuteStatus", [] { return sceAudioInSetDeviceMuteStatus(); }));
+    Require(ReportsNotImplemented("sceAudioInSetDevConnection", [] { return sceAudioInSetDevConnection(); }));
+    Require(ReportsNotImplemented("sceAudioInCountPorts", [] { return sceAudioInCountPorts(); }));
+    Require(ReportsNotImplemented("sceAudioInSetUserMute", [] { return sceAudioInSetUserMute(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicCreate", [] { return sceAudioInVmicCreate(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicDestroy", [] { return sceAudioInVmicDestroy(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicWrite", [] { return sceAudioInVmicWrite(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicGetStatus", [] { return sceAudioInVmicGetStatus(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicSetMute", [] { return sceAudioInVmicSetMute(); }));
+    Require(ReportsNotImplemented("sceAudioInSetMode", [] { return sceAudioInSetMode(); }));
+    Require(ReportsNotImplemented("sceAudioInSetMode2", [] { return sceAudioInSetMode2(); }));
+    Require(ReportsNotImplemented("sceAudioInExtCtrl", [] { return sceAudioInExtCtrl(); }));
+    Require(ReportsNotImplemented("sceAudioInInputs", [] { return sceAudioInInputs(); }));
+}
+
 void TestNoDevice() {
     constexpr int invalidHandle = static_cast<int>(0x80260101);
     constexpr int portFull = static_cast<int>(0x80260107);
@@ -195,6 +226,7 @@ void TestNoDevice() {
     Require(sceAudioInClose(handle) == invalidHandle);
     Require(sceAudioInInput(handle, buffer.data()) == invalidHandle);
     Require(sceAudioInOpen(user, 1, 0, 128, 48000, 0x11) == handle);
+    TestUnimplemented();
 }
 
 }
