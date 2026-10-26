@@ -121,6 +121,62 @@ std::size_t APS5_VABI __std_count_trivial_2_nid_postfix(const void* first, const
 std::size_t APS5_VABI __std_count_trivial_4_nid_postfix(const void* first, const void* last, std::uint32_t value) { return Count(first, last, value); }
 std::size_t APS5_VABI __std_count_trivial_8_nid_postfix(const void* first, const void* last, std::uint64_t value) { return Count(first, last, value); }
 
+std::int32_t APS5_VABI __std_min_4s_nid_postfix(const void* first, const void* last) {
+    const auto beginAddress = reinterpret_cast<std::uintptr_t>(first);
+    const auto endAddress = reinterpret_cast<std::uintptr_t>(last);
+    if (!first || !last || endAddress <= beginAddress || (endAddress - beginAddress) % sizeof(std::int32_t) != 0) NotImplemented_nid_no_patch(__func__);
+    auto* current = static_cast<const unsigned char*>(first);
+    const auto* end = static_cast<const unsigned char*>(last);
+    std::int32_t minimum = Read<std::int32_t>(current);
+    for (current += sizeof(std::int32_t); current != end; current += sizeof(std::int32_t)) {
+        const auto value = Read<std::int32_t>(current);
+        if (value < minimum) minimum = value;
+    }
+    return minimum;
+}
+
+std::int32_t APS5_VABI __std_max_4s_nid_postfix(const void* first, const void* last) {
+    const auto beginAddress = reinterpret_cast<std::uintptr_t>(first);
+    const auto endAddress = reinterpret_cast<std::uintptr_t>(last);
+    if (!first || !last || endAddress <= beginAddress || (endAddress - beginAddress) % sizeof(std::int32_t) != 0) NotImplemented_nid_no_patch(__func__);
+    auto* current = static_cast<const unsigned char*>(first);
+    const auto* end = static_cast<const unsigned char*>(last);
+    std::int32_t maximum = Read<std::int32_t>(current);
+    for (current += sizeof(std::int32_t); current != end; current += sizeof(std::int32_t)) {
+        const auto value = Read<std::int32_t>(current);
+        if (value > maximum) maximum = value;
+    }
+    return maximum;
+}
+
+std::int64_t APS5_VABI __std_min_8s_nid_postfix(const void* first, const void* last) {
+    const auto beginAddress = reinterpret_cast<std::uintptr_t>(first);
+    const auto endAddress = reinterpret_cast<std::uintptr_t>(last);
+    if (!first || !last || endAddress <= beginAddress || (endAddress - beginAddress) % sizeof(std::int64_t) != 0) NotImplemented_nid_no_patch(__func__);
+    auto* current = static_cast<const unsigned char*>(first);
+    const auto* end = static_cast<const unsigned char*>(last);
+    std::int64_t minimum = Read<std::int64_t>(current);
+    for (current += sizeof(std::int64_t); current != end; current += sizeof(std::int64_t)) {
+        const auto value = Read<std::int64_t>(current);
+        if (value < minimum) minimum = value;
+    }
+    return minimum;
+}
+
+std::int64_t APS5_VABI __std_max_8s_nid_postfix(const void* first, const void* last) {
+    const auto beginAddress = reinterpret_cast<std::uintptr_t>(first);
+    const auto endAddress = reinterpret_cast<std::uintptr_t>(last);
+    if (!first || !last || endAddress <= beginAddress || (endAddress - beginAddress) % sizeof(std::int64_t) != 0) NotImplemented_nid_no_patch(__func__);
+    auto* current = static_cast<const unsigned char*>(first);
+    const auto* end = static_cast<const unsigned char*>(last);
+    std::int64_t maximum = Read<std::int64_t>(current);
+    for (current += sizeof(std::int64_t); current != end; current += sizeof(std::int64_t)) {
+        const auto value = Read<std::int64_t>(current);
+        if (value > maximum) maximum = value;
+    }
+    return maximum;
+}
+
 std::uint64_t APS5_VABI __std_min_8u_nid_postfix(const void* first, const void* last) {
     const auto beginAddress = reinterpret_cast<std::uintptr_t>(first);
     const auto endAddress = reinterpret_cast<std::uintptr_t>(last);

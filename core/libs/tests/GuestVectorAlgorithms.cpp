@@ -10,6 +10,55 @@
 
 static void Require(bool value) { if (!value) std::abort(); }
 
+static void CheckMinMaxValueSigned() {
+    const std::int32_t edges32[] = {-0x7fffffff - 1, -0x7fffffff, -100, -1, 0, 1, 100, 0x7ffffffe, 0x7fffffff};
+    for (const auto& left : edges32) {
+        Require(__std_min_4s_nid_postfix(&left, &left + 1) == left);
+        Require(__std_max_4s_nid_postfix(&left, &left + 1) == left);
+        for (const auto& right : edges32) {
+            const std::int32_t pair[] = {left, right};
+            Require(__std_min_4s_nid_postfix(pair, pair + 2) == std::min(left, right));
+            Require(__std_max_4s_nid_postfix(pair, pair + 2) == std::max(left, right));
+        }
+    }
+    const std::int64_t edges64[] = {-0x7fffffffffffffff - 1, -0x7fffffffffffffff, -1000, -1, 0, 1, 1000, 0x7ffffffffffffffe, 0x7fffffffffffffff};
+    for (const auto& left : edges64) {
+        Require(__std_min_8s_nid_postfix(&left, &left + 1) == left);
+        Require(__std_max_8s_nid_postfix(&left, &left + 1) == left);
+        for (const auto& right : edges64) {
+            const std::int64_t pair[] = {left, right};
+            Require(__std_min_8s_nid_postfix(pair, pair + 2) == std::min(left, right));
+            Require(__std_max_8s_nid_postfix(pair, pair + 2) == std::max(left, right));
+        }
+    }
+    std::uint64_t state = 0x521cadf08e47396b;
+    for (const std::size_t count : {1, 2, 3, 4, 7, 8, 15, 16, 17, 31, 32, 33, 63, 64, 65, 127, 128, 129, 257}) {
+        std::vector<std::int64_t> values(count);
+        for (auto& value : values) {
+            state ^= state << 13;
+            state ^= state >> 7;
+            state ^= state << 17;
+            value = static_cast<std::int64_t>(state);
+        }
+        const auto expectedMin = *std::min_element(values.begin(), values.end());
+        const auto expectedMax = *std::max_element(values.begin(), values.end());
+        for (std::size_t offset = 0; offset < 32; ++offset) {
+            std::vector<unsigned char> storage(count * sizeof(std::int64_t) + 64, 0);
+            std::memcpy(storage.data() + offset, values.data(), count * sizeof(std::int64_t));
+            const auto original = storage;
+            Require(__std_min_8s_nid_postfix(storage.data() + offset, storage.data() + offset + count * sizeof(std::int64_t)) == expectedMin);
+            Require(__std_max_8s_nid_postfix(storage.data() + offset, storage.data() + offset + count * sizeof(std::int64_t)) == expectedMax);
+            Require(storage == original);
+        }
+    }
+    const std::int32_t repeated32[] = {-5, -5, -5, -5};
+    Require(__std_min_4s_nid_postfix(repeated32, repeated32 + 4) == -5);
+    Require(__std_max_4s_nid_postfix(repeated32, repeated32 + 4) == -5);
+    const std::int64_t repeated64[] = {-99, -99, -99, -99};
+    Require(__std_min_8s_nid_postfix(repeated64, repeated64 + 4) == -99);
+    Require(__std_max_8s_nid_postfix(repeated64, repeated64 + 4) == -99);
+}
+
 static void CheckMinValue() {
     const std::uint64_t edges[] = {0, 1, 0xffffffff, 0x100000000, 0x7fffffffffffffff, 0x8000000000000000, 0xfffffffffffffffe, 0xffffffffffffffff};
     for (const auto& left : edges) {
@@ -179,6 +228,7 @@ static void CheckReverseAndSwap() {
 
 int main() {
     CheckMinValue();
+    CheckMinMaxValueSigned();
     CheckSizedHelpers();
     CheckFindAndCount();
     CheckUnsizedRescan();

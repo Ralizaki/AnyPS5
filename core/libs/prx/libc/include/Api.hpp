@@ -1109,6 +1109,10 @@ std::size_t APS5_VABI __std_count_trivial_1_nid_postfix(const void* first, const
 std::size_t APS5_VABI __std_count_trivial_2_nid_postfix(const void* first, const void* last, std::uint16_t value);
 std::size_t APS5_VABI __std_count_trivial_4_nid_postfix(const void* first, const void* last, std::uint32_t value);
 std::size_t APS5_VABI __std_count_trivial_8_nid_postfix(const void* first, const void* last, std::uint64_t value);
+std::int32_t APS5_VABI __std_min_4s_nid_postfix(const void* first, const void* last);
+std::int32_t APS5_VABI __std_max_4s_nid_postfix(const void* first, const void* last);
+std::int64_t APS5_VABI __std_min_8s_nid_postfix(const void* first, const void* last);
+std::int64_t APS5_VABI __std_max_8s_nid_postfix(const void* first, const void* last);
 std::uint64_t APS5_VABI __std_min_8u_nid_postfix(const void* first, const void* last);
 const void* APS5_VABI __std_min_element_1_nid_postfix(const void* first, const void* last, bool isSigned);
 const void* APS5_VABI __std_min_element_2_nid_postfix(const void* first, const void* last, bool isSigned);
