@@ -6,7 +6,15 @@ import re
 import shlex
 import subprocess
 import sys
-import tomllib
+try:
+    import tomllib
+except ModuleNotFoundError:
+    try:
+        import tomli as tomllib
+    except ModuleNotFoundError:
+        tomllib = None
+
+TOMLDecodeError = getattr(tomllib, "TOMLDecodeError", ValueError)
 from pathlib import Path, PurePosixPath
 
 
@@ -72,6 +80,8 @@ def validate_entry(directory, entry):
         raise ValueError("targets must be a nonempty object")
     if any(not isinstance(name, str) or not isinstance(digest, str) or not SHA256.fullmatch(digest) for name, digest in targets.items()):
         raise ValueError("invalid target digest")
+    if tomllib is None:
+        raise RuntimeError("Python 3.11+ or 'tomli' is required to parse TOML patch files")
     parsed = tomllib.loads(patch.read_text(encoding="utf-8"))
     patches = parsed.get("patch")
     if not isinstance(patches, list) or not patches or any(not isinstance(item, dict) or not isinstance(item.get("target"), str) for item in patches):
@@ -127,7 +137,7 @@ def main(argv=None):
             label = f"Catalog entry {number} ({entry.get('patch')!r})"
             try:
                 patch, targets = validate_entry(args.catalog.resolve(), entry)
-            except (OSError, ValueError, tomllib.TOMLDecodeError) as error:
+            except (OSError, ValueError, TOMLDecodeError) as error:
                 print(f"{label}: rejected: {error}")
                 continue
             errors = []
@@ -200,7 +210,7 @@ def main(argv=None):
             return 2
         print(f"{prefix}: no catalog entry passed all checks.")
         return 1
-    except (OSError, ValueError, json.JSONDecodeError, tomllib.TOMLDecodeError) as error:
+    except (OSError, ValueError, json.JSONDecodeError, TOMLDecodeError) as error:
         print(f"Patch advisor: {error}", file=sys.stderr)
         return 2
 
