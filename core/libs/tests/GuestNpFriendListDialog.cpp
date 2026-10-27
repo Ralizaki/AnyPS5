@@ -2,6 +2,8 @@
 #include "prx/libc/include/general/VabiMacros.hpp"
 #include <cstdint>
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
 
 namespace {
 
@@ -60,4 +62,18 @@ int main() {
     Require(sceNpFriendListDialogGetResultA(result) == 0);
     Require(result[0] == kResultUserCanceled);
     Require(sceNpFriendListDialogTerminate() == 0);
+    bool sceNpFriendListDialogGetResultCaught = false;
+    try {
+        sceNpFriendListDialogGetResult();
+    } catch (const std::runtime_error& error) {
+        sceNpFriendListDialogGetResultCaught = (std::string(error.what()) == "sceNpFriendListDialogGetResult not implemented");
+    }
+    Require(sceNpFriendListDialogGetResultCaught);
+    bool sceNpFriendListDialogOpenCaught = false;
+    try {
+        sceNpFriendListDialogOpen();
+    } catch (const std::runtime_error& error) {
+        sceNpFriendListDialogOpenCaught = (std::string(error.what()) == "sceNpFriendListDialogOpen not implemented");
+    }
+    Require(sceNpFriendListDialogOpenCaught);
 }
