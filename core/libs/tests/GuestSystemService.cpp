@@ -74,6 +74,15 @@ int main() {
     Require(sceSystemServiceShowControllerSettings() == SYSTEM_SERVICE_OK);
     Require(sceSystemServiceShowDisplaySafeAreaSettings() == SYSTEM_SERVICE_OK);
     Require(sceSystemServiceOpenChallengeActivity() == SYSTEM_SERVICE_OK);
+    Require(sceSystemServiceOpenTournamentOccurrence(nullptr) == SYSTEM_SERVICE_OK);
+    Require(sceShellCoreUtilActivateAbort(1) == 0);
+    Require(sceShellCoreUtilActivateStart(1) == 0);
+    Require(sceShellCoreUtilActivateStartAsync(1) == 0);
+    Require(sceShellCoreUtilActivateTerm(1) == 0);
+    Require(sceShellCoreUtilActivateRecordActivation() == 0);
+    Require(Throws([] { return sceShellCoreUtilActivateGetStatus(1, nullptr, nullptr); }));
+    Require(Throws([] { return sceShellCoreUtilActivateInit(0, nullptr); }));
+    Require(Throws([] { return sceShellCoreUtilActivateIsActivated(1, nullptr); }));
     Require(sceSystemServiceLaunchWebBrowser("http:") == browserUnavailable);
     Require(sceSystemServiceLaunchWebBrowser("https:") == browserUnavailable);
     Require(sceSystemServiceLaunchWebBrowser("psno:") == browserUnavailable);
