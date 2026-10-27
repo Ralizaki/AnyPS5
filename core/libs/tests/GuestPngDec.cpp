@@ -7,6 +7,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
+#include <string>
 #include <initializer_list>
 #include <source_location>
 #include <span>
@@ -420,5 +422,12 @@ int main() {
         CheckDimensionReporting(dimension, 1);
         CheckDimensionReporting(1, dimension);
     }
+    bool scePngDecDecodeWithInputControlCaught = false;
+    try {
+        scePngDecDecodeWithInputControl();
+    } catch (const std::runtime_error& error) {
+        scePngDecDecodeWithInputControlCaught = (std::string(error.what()) == "scePngDecDecodeWithInputControl not implemented");
+    }
+    Require(scePngDecDecodeWithInputControlCaught);
     return 0;
 }
