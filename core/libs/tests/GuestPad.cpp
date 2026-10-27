@@ -10,6 +10,7 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <utility>
@@ -714,6 +715,126 @@ int main() {
 
     const int user2 = 0x10000001;
     Require(scePadGetHandle(user2, 0, 0) == noHandle);
+
+    bool scePadBondUpdateInitCaught = false;
+    try {
+        scePadBondUpdateInit();
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateInitCaught = (std::string(error.what()) == "scePadBondUpdateInit not implemented");
+    }
+    Require(scePadBondUpdateInitCaught);
+    bool scePadBondUpdateIsReadyCaught = false;
+    try {
+        scePadBondUpdateIsReady(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateIsReadyCaught = (std::string(error.what()) == "scePadBondUpdateIsReady not implemented");
+    }
+    Require(scePadBondUpdateIsReadyCaught);
+    bool scePadBondUpdateStartCaught = false;
+    try {
+        scePadBondUpdateStart(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateStartCaught = (std::string(error.what()) == "scePadBondUpdateStart not implemented");
+    }
+    Require(scePadBondUpdateStartCaught);
+    bool scePadBondUpdateGetStatusCaught = false;
+    try {
+        scePadBondUpdateGetStatus(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateGetStatusCaught = (std::string(error.what()) == "scePadBondUpdateGetStatus not implemented");
+    }
+    Require(scePadBondUpdateGetStatusCaught);
+    bool scePadBondUpdateSendDataCaught = false;
+    try {
+        scePadBondUpdateSendData(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateSendDataCaught = (std::string(error.what()) == "scePadBondUpdateSendData not implemented");
+    }
+    Require(scePadBondUpdateSendDataCaught);
+    bool scePadBondUpdateResetBondCaught = false;
+    try {
+        scePadBondUpdateResetBond(0);
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateResetBondCaught = (std::string(error.what()) == "scePadBondUpdateResetBond not implemented");
+    }
+    Require(scePadBondUpdateResetBondCaught);
+    bool scePadBondUpdateGetReconnectStatusCaught = false;
+    try {
+        scePadBondUpdateGetReconnectStatus(nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateGetReconnectStatusCaught = (std::string(error.what()) == "scePadBondUpdateGetReconnectStatus not implemented");
+    }
+    Require(scePadBondUpdateGetReconnectStatusCaught);
+    bool scePadBondUpdateTermCaught = false;
+    try {
+        scePadBondUpdateTerm();
+    } catch (const std::runtime_error& error) {
+        scePadBondUpdateTermCaught = (std::string(error.what()) == "scePadBondUpdateTerm not implemented");
+    }
+    Require(scePadBondUpdateTermCaught);
+    bool scePadControllerUpdateInitCaught = false;
+    try {
+        scePadControllerUpdateInit();
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateInitCaught = (std::string(error.what()) == "scePadControllerUpdateInit not implemented");
+    }
+    Require(scePadControllerUpdateInitCaught);
+    bool scePadControllerUpdateIsUpdateNeeded2Caught = false;
+    try {
+        scePadControllerUpdateIsUpdateNeeded2(0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateIsUpdateNeeded2Caught = (std::string(error.what()) == "scePadControllerUpdateIsUpdateNeeded2 not implemented");
+    }
+    Require(scePadControllerUpdateIsUpdateNeeded2Caught);
+    bool scePadControllerUpdateIsReadyCaught = false;
+    try {
+        scePadControllerUpdateIsReady(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateIsReadyCaught = (std::string(error.what()) == "scePadControllerUpdateIsReady not implemented");
+    }
+    Require(scePadControllerUpdateIsReadyCaught);
+    bool scePadControllerUpdateStartCaught = false;
+    try {
+        scePadControllerUpdateStart(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateStartCaught = (std::string(error.what()) == "scePadControllerUpdateStart not implemented");
+    }
+    Require(scePadControllerUpdateStartCaught);
+    bool scePadControllerUpdateGetStatusCaught = false;
+    try {
+        scePadControllerUpdateGetStatus(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateGetStatusCaught = (std::string(error.what()) == "scePadControllerUpdateGetStatus not implemented");
+    }
+    Require(scePadControllerUpdateGetStatusCaught);
+    bool scePadControllerUpdateSendDataCaught = false;
+    try {
+        scePadControllerUpdateSendData(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateSendDataCaught = (std::string(error.what()) == "scePadControllerUpdateSendData not implemented");
+    }
+    Require(scePadControllerUpdateSendDataCaught);
+    bool scePadControllerUpdateResetControllerCaught = false;
+    try {
+        scePadControllerUpdateResetController(0);
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateResetControllerCaught = (std::string(error.what()) == "scePadControllerUpdateResetController not implemented");
+    }
+    Require(scePadControllerUpdateResetControllerCaught);
+    bool scePadControllerUpdateGetReconnectStatusCaught = false;
+    try {
+        scePadControllerUpdateGetReconnectStatus(nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateGetReconnectStatusCaught = (std::string(error.what()) == "scePadControllerUpdateGetReconnectStatus not implemented");
+    }
+    Require(scePadControllerUpdateGetReconnectStatusCaught);
+    bool scePadControllerUpdateTermCaught = false;
+    try {
+        scePadControllerUpdateTerm();
+    } catch (const std::runtime_error& error) {
+        scePadControllerUpdateTermCaught = (std::string(error.what()) == "scePadControllerUpdateTerm not implemented");
+    }
+    Require(scePadControllerUpdateTermCaught);
     const int handle2 = scePadOpen_nid_postfix(user2, 0, 0, nullptr);
     Require(handle2 == PAD_HANDLE_BASE + 1);
     Require(scePadGetHandle(user2, 0, 0) == handle2);
