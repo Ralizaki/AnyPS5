@@ -213,5 +213,12 @@ int main() {
             Require(sceConvertKeycodeGetCharacter(key, 0xFFFFFFFFu, layout, &character) == 0 && character == 0);
         }
     }
+    bool sceConvertKeycodeGetCharacterFromKeyboardDataCaught = false;
+    try {
+        sceConvertKeycodeGetCharacterFromKeyboardData(nullptr, 0, 0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceConvertKeycodeGetCharacterFromKeyboardDataCaught = (std::string(error.what()) == "sceConvertKeycodeGetCharacterFromKeyboardData not implemented");
+    }
+    Require(sceConvertKeycodeGetCharacterFromKeyboardDataCaught);
     return 0;
 }
