@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
 
 namespace {
 
@@ -27,6 +29,13 @@ int main() {
     std::uint64_t out2 = ~0ull;
     Require(sceDiscMapUnknown_ioKMruft1ek("/app0/data.bin", 0x8000, 0x10000, &flags, &out1, &out2) == noBitmapInfo, "ioKMruft1ek did not report the missing bitmap");
     Require(flags == ~0ull && out1 == ~0ull && out2 == ~0ull, "ioKMruft1ek wrote an output");
+    bool sceDiscMapGetPackageSizeCaught = false;
+    try {
+        sceDiscMapGetPackageSize(0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceDiscMapGetPackageSizeCaught = (std::string(error.what()) == "sceDiscMapGetPackageSize not implemented");
+    }
+    Require(sceDiscMapGetPackageSizeCaught, "sceDiscMapGetPackageSize threw unexpected exception");
     std::puts("DiscMap tests passed");
     return 0;
 }
