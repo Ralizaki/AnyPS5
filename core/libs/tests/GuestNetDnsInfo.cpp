@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <cstring>
 #include <initializer_list>
+#include <stdexcept>
+#include <string>
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -38,6 +40,8 @@ void CheckUninitialized() {
         Require(std::memcmp(&info, &before, sizeof(info)) == 0);
         Require(std::memcmp(&info6, &before6, sizeof(info6)) == 0);
     }
+    Require(Failed(sceNetClearDnsCache(0), kEnotinit));
+    Require(Failed(sceNetClearDnsCache(1), kEnotinit));
 }
 
 void CheckDns() {
@@ -89,6 +93,50 @@ void CheckDns() {
     Require(sceNetGetDns6Info(&info6, 0) == 2 && std::memcmp(&info6, &set6, sizeof(set6)) == 0);
     Require(sceNetSetDns6Info(nullptr, 0) == 0);
     Require(sceNetGetDns6Info(&info6, 0) == 0);
+    Require(Failed(sceNetClearDnsCache(1), kEinval));
+    Require(sceNetClearDnsCache(0) == 0);
+    bool kernelDnsCaught = false;
+    try {
+        sceNetSetDnsInfoToKernel(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        kernelDnsCaught = (std::string(error.what()) == "sceNetSetDnsInfoToKernel not implemented");
+    }
+    Require(kernelDnsCaught);
+    bool kernelDns6Caught = false;
+    try {
+        sceNetSetDns6InfoToKernel(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        kernelDns6Caught = (std::string(error.what()) == "sceNetSetDns6InfoToKernel not implemented");
+    }
+    Require(kernelDns6Caught);
+    bool resolverAbortCaught = false;
+    try {
+        sceNetResolverConnectAbort(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        resolverAbortCaught = (std::string(error.what()) == "sceNetResolverConnectAbort not implemented");
+    }
+    Require(resolverAbortCaught);
+    bool resolverCreateCaught = false;
+    try {
+        sceNetResolverConnectCreate(nullptr, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        resolverCreateCaught = (std::string(error.what()) == "sceNetResolverConnectCreate not implemented");
+    }
+    Require(resolverCreateCaught);
+    bool resolverConnectCaught = false;
+    try {
+        sceNetResolverConnect(nullptr, nullptr, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        resolverConnectCaught = (std::string(error.what()) == "sceNetResolverConnect not implemented");
+    }
+    Require(resolverConnectCaught);
+    bool resolverDestroyCaught = false;
+    try {
+        sceNetResolverConnectDestroy(nullptr);
+    } catch (const std::runtime_error& error) {
+        resolverDestroyCaught = (std::string(error.what()) == "sceNetResolverConnectDestroy not implemented");
+    }
+    Require(resolverDestroyCaught);
 }
 
 }
