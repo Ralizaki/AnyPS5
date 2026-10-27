@@ -1,6 +1,8 @@
 #include "SceTypes.hpp"
 #include "prx/libkernel_sys/libkernel_sys.hpp"
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
 
 namespace {
 
@@ -41,5 +43,152 @@ int main() {
     Require(sceKernelClearGameDirectMemory() == SCE_KERNEL_ERROR_ENOSYS);
     Require(sceKernelMapTraceMemory() == SCE_KERNEL_ERROR_ENOSYS);
     Require(sceKernelTraceMemoryTypeProtect() == SCE_KERNEL_ERROR_ENOSYS);
+    bool kmq_notify_nid_postfixCaught = false;
+    try {
+        kmq_notify_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        kmq_notify_nid_postfixCaught = (std::string(error.what()) == "kmq_notify_nid_postfix not implemented");
+    }
+    Require(kmq_notify_nid_postfixCaught);
+    bool kmq_open_nid_postfixCaught = false;
+    try {
+        kmq_open_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        kmq_open_nid_postfixCaught = (std::string(error.what()) == "kmq_open_nid_postfix not implemented");
+    }
+    Require(kmq_open_nid_postfixCaught);
+    bool kmq_setattr_nid_postfixCaught = false;
+    try {
+        kmq_setattr_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        kmq_setattr_nid_postfixCaught = (std::string(error.what()) == "kmq_setattr_nid_postfix not implemented");
+    }
+    Require(kmq_setattr_nid_postfixCaught);
+    bool kmq_timedreceive_nid_postfixCaught = false;
+    try {
+        kmq_timedreceive_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        kmq_timedreceive_nid_postfixCaught = (std::string(error.what()) == "kmq_timedreceive_nid_postfix not implemented");
+    }
+    Require(kmq_timedreceive_nid_postfixCaught);
+    bool kmq_timedsend_nid_postfixCaught = false;
+    try {
+        kmq_timedsend_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        kmq_timedsend_nid_postfixCaught = (std::string(error.what()) == "kmq_timedsend_nid_postfix not implemented");
+    }
+    Require(kmq_timedsend_nid_postfixCaught);
+    bool kmq_unlink_nid_postfixCaught = false;
+    try {
+        kmq_unlink_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        kmq_unlink_nid_postfixCaught = (std::string(error.what()) == "kmq_unlink_nid_postfix not implemented");
+    }
+    Require(kmq_unlink_nid_postfixCaught);
+    bool ksem_close_nid_postfixCaught = false;
+    try {
+        ksem_close_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_close_nid_postfixCaught = (std::string(error.what()) == "ksem_close_nid_postfix not implemented");
+    }
+    Require(ksem_close_nid_postfixCaught);
+    bool ksem_destroy_nid_postfixCaught = false;
+    try {
+        ksem_destroy_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_destroy_nid_postfixCaught = (std::string(error.what()) == "ksem_destroy_nid_postfix not implemented");
+    }
+    Require(ksem_destroy_nid_postfixCaught);
+    bool ksem_getvalue_nid_postfixCaught = false;
+    try {
+        ksem_getvalue_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_getvalue_nid_postfixCaught = (std::string(error.what()) == "ksem_getvalue_nid_postfix not implemented");
+    }
+    Require(ksem_getvalue_nid_postfixCaught);
+    bool ksem_init_nid_postfixCaught = false;
+    try {
+        ksem_init_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_init_nid_postfixCaught = (std::string(error.what()) == "ksem_init_nid_postfix not implemented");
+    }
+    Require(ksem_init_nid_postfixCaught);
+    bool ksem_open_nid_postfixCaught = false;
+    try {
+        ksem_open_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_open_nid_postfixCaught = (std::string(error.what()) == "ksem_open_nid_postfix not implemented");
+    }
+    Require(ksem_open_nid_postfixCaught);
+    bool ksem_post_nid_postfixCaught = false;
+    try {
+        ksem_post_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_post_nid_postfixCaught = (std::string(error.what()) == "ksem_post_nid_postfix not implemented");
+    }
+    Require(ksem_post_nid_postfixCaught);
+    bool ksem_timedwait_nid_postfixCaught = false;
+    try {
+        ksem_timedwait_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_timedwait_nid_postfixCaught = (std::string(error.what()) == "ksem_timedwait_nid_postfix not implemented");
+    }
+    Require(ksem_timedwait_nid_postfixCaught);
+    bool ksem_trywait_nid_postfixCaught = false;
+    try {
+        ksem_trywait_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_trywait_nid_postfixCaught = (std::string(error.what()) == "ksem_trywait_nid_postfix not implemented");
+    }
+    Require(ksem_trywait_nid_postfixCaught);
+    bool ksem_unlink_nid_postfixCaught = false;
+    try {
+        ksem_unlink_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_unlink_nid_postfixCaught = (std::string(error.what()) == "ksem_unlink_nid_postfix not implemented");
+    }
+    Require(ksem_unlink_nid_postfixCaught);
+    bool ksem_wait_nid_postfixCaught = false;
+    try {
+        ksem_wait_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        ksem_wait_nid_postfixCaught = (std::string(error.what()) == "ksem_wait_nid_postfix not implemented");
+    }
+    Require(ksem_wait_nid_postfixCaught);
+    bool mdbg_call_nid_postfixCaught = false;
+    try {
+        mdbg_call_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        mdbg_call_nid_postfixCaught = (std::string(error.what()) == "mdbg_call_nid_postfix not implemented");
+    }
+    Require(mdbg_call_nid_postfixCaught);
+    bool mdbg_service_nid_postfixCaught = false;
+    try {
+        mdbg_service_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        mdbg_service_nid_postfixCaught = (std::string(error.what()) == "mdbg_service_nid_postfix not implemented");
+    }
+    Require(mdbg_service_nid_postfixCaught);
+    bool mount_nid_postfixCaught = false;
+    try {
+        mount_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        mount_nid_postfixCaught = (std::string(error.what()) == "mount_nid_postfix not implemented");
+    }
+    Require(mount_nid_postfixCaught);
+    bool openintr_nid_postfixCaught = false;
+    try {
+        openintr_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        openintr_nid_postfixCaught = (std::string(error.what()) == "openintr_nid_postfix not implemented");
+    }
+    Require(openintr_nid_postfixCaught);
+    bool profil_nid_postfixCaught = false;
+    try {
+        profil_nid_postfix();
+    } catch (const std::runtime_error& error) {
+        profil_nid_postfixCaught = (std::string(error.what()) == "profil_nid_postfix not implemented");
+    }
+    Require(profil_nid_postfixCaught);
     return 0;
 }
