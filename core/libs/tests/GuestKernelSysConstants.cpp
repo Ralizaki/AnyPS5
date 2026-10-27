@@ -59,5 +59,23 @@ int main() {
     Require(ReportsNotImplemented("physhm_unlink", [] { return physhm_unlink_nid_postfix(); }));
     Require(ReportsNotImplemented("sceKernelGetProcessAbiType", [] { return sceKernelGetProcessAbiType(); }));
     Require(ReportsNotImplemented("sceKernelPrintBacktraceWithModuleInfo", [] { return sceKernelPrintBacktraceWithModuleInfo(); }));
+    Require(ReportsNotImplemented("AC1FtjqMCL0", [] { return sceKernelUnknown03(); }));
+    Require(ReportsNotImplemented("0iEKNAvT600", [] { return sceKernelUnknown04(); }));
+    Require(ReportsNotImplemented("2cELEBPdYQ0", [] { return sceKernelUnknown05(); }));
+    Require(ReportsNotImplemented("5xYxiOtOccA", [] { return sceKernelUnknown06(); }));
+    Require(ReportsNotImplemented("6W+shIH315Q", [] { return sceKernelUnknown07(); }));
+    Require(ReportsNotImplemented("7ilObq815O4", [] { return sceKernelUnknown08(); }));
+    Require(ReportsNotImplemented("7iq7Hfs8HBk", [] { return sceKernelUnknown09(); }));
+    Require(ReportsNotImplemented("AMJZhpC+siY", [] { return sceKernelUnknown10(); }));
+    Require(ReportsNotImplemented("E9XkHowt+dY", [] { return sceKernelUnknown11(); }));
+    Require(ReportsNotImplemented("GADjreszOgM", [] { return sceKernelUnknown12(); }));
+    Require(ReportsNotImplemented("Giyg2xGrXDU", [] { return sceKernelUnknown13(); }));
+    Require(ReportsNotImplemented("KC3y21wrqzc", [] { return sceKernelUnknown14(); }));
+    Require(ReportsNotImplemented("Qb8wS4GZUsw", [] { return sceKernelUnknown15(); }));
+    Require(ReportsNotImplemented("aAQZSjb2fho", [] { return sceKernelUnknown16(); }));
+    Require(ReportsNotImplemented("pnz21I6VjDs", [] { return sceKernelUnknown17(); }));
+    Require(ReportsNotImplemented("qk043QPsrZU", [] { return sceKernelUnknown18(); }));
+    Require(ReportsNotImplemented("uDGXwUKqi8s", [] { return sceKernelUnknown19(); }));
+    Require(ReportsNotImplemented("__Ux86_64_setcontext", [] { return __Ux86_64_setcontext(); }));
     return 0;
 }
