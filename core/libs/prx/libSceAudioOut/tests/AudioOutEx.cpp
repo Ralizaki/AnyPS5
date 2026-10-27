@@ -56,5 +56,22 @@ int main() {
     Require(sceAudioOutExClose(ac3) == 0, "close the mode 0 port");
     Require(Throws([ac3] { sceAudioOutExClose(ac3); }), "a closed port throws");
     Require(sceAudioOutExClose(eac3) == 0, "close the mode 4 port");
+    Require(Throws([] { sceAudioOutOpenEx(); }), "sceAudioOutOpenEx throws not implemented");
+    Require(Throws([] { sceAudioOutSetSystemDebugState(); }), "sceAudioOutSetSystemDebugState throws not implemented");
+    Require(Throws([] { sceAudioOutGetHandleStatusInfo(); }), "sceAudioOutGetHandleStatusInfo throws not implemented");
+    Require(Throws([] { sceAudioOutGetSimulatedHandleStatusInfo2(); }), "sceAudioOutGetSimulatedHandleStatusInfo2 throws not implemented");
+    Require(Throws([] { sceAudioOutChangeAppModuleState(); }), "sceAudioOutChangeAppModuleState throws not implemented");
+    Require(Throws([] { sceAudioOutGetSimulatedBusUsableStatusByBusType(); }), "sceAudioOutGetSimulatedBusUsableStatusByBusType throws not implemented");
+    Require(Throws([] { sceAudioOutAttachToApplicationByPid(); }), "sceAudioOutAttachToApplicationByPid throws not implemented");
+    Require(Throws([] { sceAudioOutDetachFromApplicationByPid(); }), "sceAudioOutDetachFromApplicationByPid throws not implemented");
+    Require(Throws([] { sceAudioOutExConfigureOutputMode(); }), "sceAudioOutExConfigureOutputMode throws not implemented");
+    Require(Throws([] { sceAudioOutExSystemInfoIsSupportedAudioOutExMode(); }), "sceAudioOutExSystemInfoIsSupportedAudioOutExMode throws not implemented");
+    Require(Throws([] { sceAudioOutExGetSystemInfo(); }), "sceAudioOutExGetSystemInfo throws not implemented");
+    Require(Throws([] { sceAudioOutExGetOutputInfo(); }), "sceAudioOutExGetOutputInfo throws not implemented");
+    Require(Throws([] { sceAudioOutSysConfigureOutputMode(); }), "sceAudioOutSysConfigureOutputMode throws not implemented");
+    Require(Throws([] { sceAudioOutSysGetMonitorInfo(); }), "sceAudioOutSysGetMonitorInfo throws not implemented");
+    Require(Throws([] { sceAudioOutSysHdmiMonitorInfoIsSupportedAudioOutMode(); }), "sceAudioOutSysHdmiMonitorInfoIsSupportedAudioOutMode throws not implemented");
+    Require(Throws([] { sceAudioOutSysGetSystemInfo(); }), "sceAudioOutSysGetSystemInfo throws not implemented");
+    Require(Throws([] { sceAudioOutSysGetOutputInfo(); }), "sceAudioOutSysGetOutputInfo throws not implemented");
     return failed ? 1 : 0;
 }
