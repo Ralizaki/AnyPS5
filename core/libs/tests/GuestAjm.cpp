@@ -2484,5 +2484,17 @@ int main() {
     } catch (const std::runtime_error& error) {
         Require(std::string(error.what()) == "sceAjmDecWVorbisCreateSetupPacket not implemented");
     }
+    try {
+        sceAjmBatchJobEncode(nullptr, 0, nullptr, 0, nullptr, 0, nullptr);
+        Require(false);
+    } catch (const std::runtime_error& error) {
+        Require(std::string(error.what()) == "sceAjmBatchJobEncode not implemented");
+    }
+    try {
+        sceAjmStrError(0);
+        Require(false);
+    } catch (const std::runtime_error& error) {
+        Require(std::string(error.what()) == "sceAjmStrError not implemented");
+    }
     Require(sceAjmFinalize(context) == 0);
 }
