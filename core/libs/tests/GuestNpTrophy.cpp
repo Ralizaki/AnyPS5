@@ -74,6 +74,22 @@ int main() {
     Require(sceNpTrophyRegisterContext(context, handle, 0) == AlreadyRegistered, "register twice");
     Require(sceNpTrophyGetTrophyUnlockState(context, handle, reinterpret_cast<TrophyFlagArray*>(flags), &count) == 0 && count == 2 && flags[0] == 0, "two trophies, none unlocked");
 
+    GroupDetails groupDetails{sizeof(GroupDetails)};
+    GroupData groupData{sizeof(GroupData)};
+    Require(sceNpTrophyGetGroupInfo(context, handle, 0, &groupDetails, &groupData) == 0, "get base group info");
+    Require(groupDetails.groupId == 0 && groupDetails.numTrophies == 2, "group details");
+    Require(groupData.groupId == 0 && groupData.unlockedTrophies == 0, "group data");
+
+    TrophyDetails trophyDetails{sizeof(TrophyDetails)};
+    TrophyData trophyData{sizeof(TrophyData)};
+    Require(sceNpTrophyGetTrophyInfo(context, handle, 0, &trophyDetails, &trophyData) == 0, "get trophy 0 info");
+    Require(trophyDetails.trophyId == 0 && !trophyData.unlocked, "trophy 0 data");
+
+    Require(sceNpTrophyGetGroupInfo(context, handle, 1, &groupDetails, &groupData) == static_cast<int>(0x8055160bu), "invalid group id");
+    Require(sceNpTrophyGetTrophyInfo(context, handle, 99, &trophyDetails, &trophyData) == InvalidTrophyId, "invalid trophy id");
+    Require(sceNpTrophyGetGroupInfo(context, handle, 0, nullptr, nullptr) == InvalidArgument, "null group info pointers");
+    Require(sceNpTrophyGetTrophyInfo(context, handle, 0, nullptr, nullptr) == InvalidArgument, "null trophy info pointers");
+
     std::uint64_t size = 0;
     Require(sceNpTrophyGetGameIcon(context, handle, nullptr, &size) == 0 && size == 9, "game icon size");
     char icon[16] = {};
@@ -88,6 +104,8 @@ int main() {
     Require(sceNpTrophyUnlockTrophy(context, handle, 1, &platinum) == 0 && platinum == -1, "unlock trophy 1");
     Require(sceNpTrophyUnlockTrophy(context, handle, 1, &platinum) == AlreadyUnlocked, "unlock trophy 1 twice");
     Require(sceNpTrophyGetTrophyUnlockState(context, handle, reinterpret_cast<TrophyFlagArray*>(flags), &count) == 0 && flags[0] == 2u, "trophy 1 unlocked");
+    Require(sceNpTrophyGetTrophyInfo(context, handle, 1, &trophyDetails, &trophyData) == 0, "get trophy 1 info");
+    Require(trophyDetails.trophyId == 1 && trophyData.unlocked, "trophy 1 unlocked data");
     size = sizeof(icon);
     Require(sceNpTrophyGetTrophyIcon(context, handle, 1, icon, &size) == 0 && size == 6 && std::memcmp(icon, "second", 6) == 0, "icon of the unlocked trophy");
     int saved = -1;
