@@ -3,6 +3,8 @@
 #include "prx/libSceCommonDialog/CommonDialog.hpp"
 #include <cstdint>
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
 
 namespace {
 
@@ -121,5 +123,26 @@ int main() {
     Require(result.padding == 0x5a5a5a5a && result.extended == &extended);
     Require(extended.type == 0x5a5a5a5a && extended.content[2047] == 'x');
     Require(sceWebBrowserDialogTerminate() == 0);
+    bool sceWebBrowserDialogGetEventCaught = false;
+    try {
+        sceWebBrowserDialogGetEvent();
+    } catch (const std::runtime_error& error) {
+        sceWebBrowserDialogGetEventCaught = (std::string(error.what()) == "sceWebBrowserDialogGetEvent not implemented");
+    }
+    Require(sceWebBrowserDialogGetEventCaught);
+    bool sceWebBrowserDialogNavigateCaught = false;
+    try {
+        sceWebBrowserDialogNavigate();
+    } catch (const std::runtime_error& error) {
+        sceWebBrowserDialogNavigateCaught = (std::string(error.what()) == "sceWebBrowserDialogNavigate not implemented");
+    }
+    Require(sceWebBrowserDialogNavigateCaught);
+    bool sceWebBrowserDialogSetZoomCaught = false;
+    try {
+        sceWebBrowserDialogSetZoom();
+    } catch (const std::runtime_error& error) {
+        sceWebBrowserDialogSetZoomCaught = (std::string(error.what()) == "sceWebBrowserDialogSetZoom not implemented");
+    }
+    Require(sceWebBrowserDialogSetZoomCaught);
     return 0;
 }
