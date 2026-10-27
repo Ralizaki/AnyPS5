@@ -514,6 +514,23 @@ void testHevcMain10() {
     check(info.generalProfileIdc == 2 && info.bitDepthLumaMinus8 == 2 && info.bitDepthChromaMinus8 == 2, "Main 10 HEVC profile or bit depth differs");
 }
 
+template <typename TCall>
+bool reportsNotImplemented(const char* name, TCall call) {
+    try {
+        call();
+    } catch (const std::runtime_error& error) {
+        return std::string(error.what()) == std::string(name) + " not implemented";
+    }
+    return false;
+}
+
+void testUnimplemented() {
+    OutputInfo output{sizeof(OutputInfo)};
+    output.pictureCount = 2;
+    check(reportsNotImplemented("sceVdecswGetPictureInfo", [&] { sceVdecswGetPictureInfo(&output, nullptr, nullptr); }),
+          "multiple pictures did not report unimplemented");
+}
+
 int main() {
     try {
         testGenericPictureInfoValidation();
@@ -526,6 +543,7 @@ int main() {
         testSyncWrappers();
         testVp9PictureInfo();
         testVp9PictureInfoOfAvcPicture();
+        testUnimplemented();
         std::puts("Vdecsw tests passed");
         return 0;
     } catch (const std::exception& error) {
