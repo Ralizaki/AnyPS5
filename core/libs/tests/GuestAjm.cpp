@@ -1,4 +1,5 @@
 #include "prx/libSceAjm.native/include/Api.hpp"
+#include "prx/libSceAjmi/include/Api.hpp"
 #include "SceTypes.hpp"
 #include "prx/libc/include/general/VabiMacros.hpp"
 #include <algorithm>
@@ -2451,5 +2452,19 @@ int main() {
     TestConsoleSingleFrameRun(context);
     TestConsoleStaleHeaderBits(context);
     Require(sceAjmDecWVorbisCreateHeaderPacket(nullptr) == static_cast<int>(0x8A6E0001));
+    bool sceAjmBatchJobInlineBufferCaught = false;
+    try {
+        sceAjmBatchJobInlineBuffer();
+    } catch (const std::runtime_error& error) {
+        sceAjmBatchJobInlineBufferCaught = (std::string(error.what()) == "sceAjmBatchJobInlineBuffer not implemented");
+    }
+    Require(sceAjmBatchJobInlineBufferCaught);
+    bool sceAjmBatchJobRunBufferRaCaught = false;
+    try {
+        sceAjmBatchJobRunBufferRa_nid_disambig1();
+    } catch (const std::runtime_error& error) {
+        sceAjmBatchJobRunBufferRaCaught = (std::string(error.what()) == "sceAjmBatchJobRunBufferRa not implemented");
+    }
+    Require(sceAjmBatchJobRunBufferRaCaught);
     Require(sceAjmFinalize(context) == 0);
 }
