@@ -739,6 +739,76 @@ int main() {
         trackingLedCaught = (std::string(error.what()) == "scePadDisableTrackingLedBatterySaver not implemented");
     }
     Require(trackingLedCaught);
+    bool openExt2Caught = false;
+    try {
+        scePadOpenExt2(0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        openExt2Caught = (std::string(error.what()) == "scePadOpenExt2 not implemented");
+    }
+    Require(openExt2Caught);
+    bool deviceOpenCaught = false;
+    try {
+        scePadDeviceOpen(0, 0, 0);
+    } catch (const std::runtime_error& error) {
+        deviceOpenCaught = (std::string(error.what()) == "scePadDeviceOpen not implemented");
+    }
+    Require(deviceOpenCaught);
+    bool getDataInternalCaught = false;
+    try {
+        scePadGetDataInternal(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        getDataInternalCaught = (std::string(error.what()) == "scePadGetDataInternal not implemented");
+    }
+    Require(getDataInternalCaught);
+    bool setUserColorCaught = false;
+    try {
+        scePadSetUserColor(handle, 0);
+    } catch (const std::runtime_error& error) {
+        setUserColorCaught = (std::string(error.what()) == "scePadSetUserColor not implemented");
+    }
+    Require(setUserColorCaught);
+    bool vibrationStrengthCaught = false;
+    try {
+        scePadSetVibrationStrength(handle, 0);
+    } catch (const std::runtime_error& error) {
+        vibrationStrengthCaught = (std::string(error.what()) == "scePadSetVibrationStrength not implemented");
+    }
+    Require(vibrationStrengthCaught);
+    bool lightBarBlinkingCaught = false;
+    try {
+        scePadSetLightBarBlinking(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        lightBarBlinkingCaught = (std::string(error.what()) == "scePadSetLightBarBlinking not implemented");
+    }
+    Require(lightBarBlinkingCaught);
+    bool getIdleCountCaught = false;
+    try {
+        scePadGetIdleCount(0);
+    } catch (const std::runtime_error& error) {
+        getIdleCountCaught = (std::string(error.what()) == "scePadGetIdleCount not implemented");
+    }
+    Require(getIdleCountCaught);
+    bool getControllerIdleCountCaught = false;
+    try {
+        scePadGetControllerIdleCount(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        getControllerIdleCountCaught = (std::string(error.what()) == "scePadGetControllerIdleCount not implemented");
+    }
+    Require(getControllerIdleCountCaught);
+    bool setPowerSavingStateCaught = false;
+    try {
+        scePadSetPowerSavingState(handle, 0);
+    } catch (const std::runtime_error& error) {
+        setPowerSavingStateCaught = (std::string(error.what()) == "scePadSetPowerSavingState not implemented");
+    }
+    Require(setPowerSavingStateCaught);
+    bool setAutoPowerOffCountCaught = false;
+    try {
+        scePadSetAutoPowerOffCount(0);
+    } catch (const std::runtime_error& error) {
+        setAutoPowerOffCountCaught = (std::string(error.what()) == "scePadSetAutoPowerOffCount not implemented");
+    }
+    Require(setAutoPowerOffCountCaught);
     Require(scePadSetAngularVelocityDeadbandState(handle, false) == 0);
     Require(scePadSetAngularVelocityDeadbandState(handle + 1, false) == PAD_ERROR_INVALID_HANDLE);
     Require(scePadSetAngularVelocityDeadbandState(handle + 1, true) == PAD_ERROR_INVALID_HANDLE);
