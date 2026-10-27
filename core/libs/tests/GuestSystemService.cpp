@@ -151,4 +151,20 @@ int main() {
     event.event_type = 7;
     Require(sceSystemServiceReceiveEvent(&event) == SYSTEM_SERVICE_ERROR_NO_EVENT);
     TestPlayerDialogParam();
+    Require(Throws([] { sceShellCoreUtilDebugGetCffInfo(); }));
+    Require(Throws([] { sceShellCoreUtilDebugSetCffStatus(); }));
+    Require(Throws([] { sceShellCoreUtilGetPeripheralConnectionSessionId(); }));
+    Require(Throws([] { sceShellCoreUtilGetCdlgEnabledFreezeRendering(); }));
+    Require(Throws([] { sceShellCoreUtilGetNpTitleId(); }));
+    Require(Throws([] { sceShellCoreUtilIsCronosInGameCommerceEnabled(); }));
+    Require(Throws([] { sceShellCoreUtilLemSettingGet(); }));
+    Require(Throws([] { sceShellCoreUtilLemSettingSet(); }));
+    Require(Throws([] { sceShellCoreUtilLemSettingGetList(); }));
+    Require(Throws([] { sceShellCoreUtilLemSettingReset(); }));
+    Require(Throws([] { sceCoredumpSequenceHandlerUpdateEventCache(); }));
+    Require(Throws([] { sceCoredumpSequenceHandlerGetEventCache(); }));
+    Require(Throws([] { sceCoredumpSequenceHandlerGetWorkingEventSummary(); }));
+    Require(Throws([] { sceCoredumpSequenceHandlerGetCoredumpStatus(); }));
+    Require(Throws([] { sceCoredumpSequenceHandlerGetCoredumpStatusByAppId(); }));
+    Require(Throws([] { sceCoredumpSequenceHandlerCancelCoredump(); }));
 }
