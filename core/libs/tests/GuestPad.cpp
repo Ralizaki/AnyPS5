@@ -10,6 +10,7 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <utility>
@@ -714,6 +715,182 @@ int main() {
 
     const int user2 = 0x10000001;
     Require(scePadGetHandle(user2, 0, 0) == noHandle);
+
+    bool scePadGetActiveProfileInfoCaught = false;
+    try {
+        scePadGetActiveProfileInfo(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetActiveProfileInfoCaught = (std::string(error.what()) == "scePadGetActiveProfileInfo not implemented");
+    }
+    Require(scePadGetActiveProfileInfoCaught);
+    bool scePadDisableActiveProfileChangeCaught = false;
+    try {
+        scePadDisableActiveProfileChange(handle, false);
+    } catch (const std::runtime_error& error) {
+        scePadDisableActiveProfileChangeCaught = (std::string(error.what()) == "scePadDisableActiveProfileChange not implemented");
+    }
+    Require(scePadDisableActiveProfileChangeCaught);
+    bool scePadDisableActiveProfileChangeByDeviceIdCaught = false;
+    try {
+        scePadDisableActiveProfileChangeByDeviceId(0, false);
+    } catch (const std::runtime_error& error) {
+        scePadDisableActiveProfileChangeByDeviceIdCaught = (std::string(error.what()) == "scePadDisableActiveProfileChangeByDeviceId not implemented");
+    }
+    Require(scePadDisableActiveProfileChangeByDeviceIdCaught);
+    bool scePadSetActiveProfileSlotCaught = false;
+    try {
+        scePadSetActiveProfileSlot(0, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetActiveProfileSlotCaught = (std::string(error.what()) == "scePadSetActiveProfileSlot not implemented");
+    }
+    Require(scePadSetActiveProfileSlotCaught);
+    bool scePadGetSavedSettingInfoCaught = false;
+    try {
+        scePadGetSavedSettingInfo(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetSavedSettingInfoCaught = (std::string(error.what()) == "scePadGetSavedSettingInfo not implemented");
+    }
+    Require(scePadGetSavedSettingInfoCaught);
+    bool scePadSetSavedSettingInfoCaught = false;
+    try {
+        scePadSetSavedSettingInfo(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetSavedSettingInfoCaught = (std::string(error.what()) == "scePadSetSavedSettingInfo not implemented");
+    }
+    Require(scePadSetSavedSettingInfoCaught);
+    bool scePadParseUniqueDataLeonardoCaught = false;
+    try {
+        scePadParseUniqueDataLeonardo(handle, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadParseUniqueDataLeonardoCaught = (std::string(error.what()) == "scePadParseUniqueDataLeonardo not implemented");
+    }
+    Require(scePadParseUniqueDataLeonardoCaught);
+    bool scePadGetControllerTypeLeonardoCaught = false;
+    try {
+        scePadGetControllerTypeLeonardo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetControllerTypeLeonardoCaught = (std::string(error.what()) == "scePadGetControllerTypeLeonardo not implemented");
+    }
+    Require(scePadGetControllerTypeLeonardoCaught);
+    bool scePadSetControllerTypeLeonardoCaught = false;
+    try {
+        scePadSetControllerTypeLeonardo(0, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetControllerTypeLeonardoCaught = (std::string(error.what()) == "scePadSetControllerTypeLeonardo not implemented");
+    }
+    Require(scePadSetControllerTypeLeonardoCaught);
+    bool scePadGetProfileLeonardoCaught = false;
+    try {
+        scePadGetProfileLeonardo(handle, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetProfileLeonardoCaught = (std::string(error.what()) == "scePadGetProfileLeonardo not implemented");
+    }
+    Require(scePadGetProfileLeonardoCaught);
+    bool scePadSetProfileLeonardoCaught = false;
+    try {
+        scePadSetProfileLeonardo(handle, 0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetProfileLeonardoCaught = (std::string(error.what()) == "scePadSetProfileLeonardo not implemented");
+    }
+    Require(scePadSetProfileLeonardoCaught);
+    bool scePadResetLeonardoCaught = false;
+    try {
+        scePadResetLeonardo(handle);
+    } catch (const std::runtime_error& error) {
+        scePadResetLeonardoCaught = (std::string(error.what()) == "scePadResetLeonardo not implemented");
+    }
+    Require(scePadResetLeonardoCaught);
+    bool scePadSetProfileEditModeCaught = false;
+    try {
+        scePadSetProfileEditMode(handle, false, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetProfileEditModeCaught = (std::string(error.what()) == "scePadSetProfileEditMode not implemented");
+    }
+    Require(scePadSetProfileEditModeCaught);
+    bool scePadGetProfileEditModeCaught = false;
+    try {
+        scePadGetProfileEditMode(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetProfileEditModeCaught = (std::string(error.what()) == "scePadGetProfileEditMode not implemented");
+    }
+    Require(scePadGetProfileEditModeCaught);
+    bool scePadGetProfileEditModeLeonardoCaught = false;
+    try {
+        scePadGetProfileEditModeLeonardo(handle);
+    } catch (const std::runtime_error& error) {
+        scePadGetProfileEditModeLeonardoCaught = (std::string(error.what()) == "scePadGetProfileEditModeLeonardo not implemented");
+    }
+    Require(scePadGetProfileEditModeLeonardoCaught);
+    bool scePadSetSelectButtonCustomizeModeCaught = false;
+    try {
+        scePadSetSelectButtonCustomizeMode(handle, false);
+    } catch (const std::runtime_error& error) {
+        scePadSetSelectButtonCustomizeModeCaught = (std::string(error.what()) == "scePadSetSelectButtonCustomizeMode not implemented");
+    }
+    Require(scePadSetSelectButtonCustomizeModeCaught);
+    bool scePadGetSelectButtonCustomizeModeCaught = false;
+    try {
+        scePadGetSelectButtonCustomizeMode(handle);
+    } catch (const std::runtime_error& error) {
+        scePadGetSelectButtonCustomizeModeCaught = (std::string(error.what()) == "scePadGetSelectButtonCustomizeMode not implemented");
+    }
+    Require(scePadGetSelectButtonCustomizeModeCaught);
+    bool scePadSetToggleAllReleaseLeonardoCaught = false;
+    try {
+        scePadSetToggleAllReleaseLeonardo(handle);
+    } catch (const std::runtime_error& error) {
+        scePadSetToggleAllReleaseLeonardoCaught = (std::string(error.what()) == "scePadSetToggleAllReleaseLeonardo not implemented");
+    }
+    Require(scePadSetToggleAllReleaseLeonardoCaught);
+    bool scePadEnableControllerIndicatorCaught = false;
+    try {
+        scePadEnableControllerIndicator(handle);
+    } catch (const std::runtime_error& error) {
+        scePadEnableControllerIndicatorCaught = (std::string(error.what()) == "scePadEnableControllerIndicator not implemented");
+    }
+    Require(scePadEnableControllerIndicatorCaught);
+    bool scePadEnableProfileIndicatorCaught = false;
+    try {
+        scePadEnableProfileIndicator(handle);
+    } catch (const std::runtime_error& error) {
+        scePadEnableProfileIndicatorCaught = (std::string(error.what()) == "scePadEnableProfileIndicator not implemented");
+    }
+    Require(scePadEnableProfileIndicatorCaught);
+    bool scePadSetProfileIndicatorAnimationCaught = false;
+    try {
+        scePadSetProfileIndicatorAnimation(handle, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetProfileIndicatorAnimationCaught = (std::string(error.what()) == "scePadSetProfileIndicatorAnimation not implemented");
+    }
+    Require(scePadSetProfileIndicatorAnimationCaught);
+    bool scePadIsCoPilotCaught = false;
+    try {
+        scePadIsCoPilot(handle);
+    } catch (const std::runtime_error& error) {
+        scePadIsCoPilotCaught = (std::string(error.what()) == "scePadIsCoPilot not implemented");
+    }
+    Require(scePadIsCoPilotCaught);
+    bool scePadSetIsCoPilotCaught = false;
+    try {
+        scePadSetIsCoPilot(handle, false);
+    } catch (const std::runtime_error& error) {
+        scePadSetIsCoPilotCaught = (std::string(error.what()) == "scePadSetIsCoPilot not implemented");
+    }
+    Require(scePadSetIsCoPilotCaught);
+    bool scePadRegisterCollaboInputMgrProcessCaught = false;
+    try {
+        scePadRegisterCollaboInputMgrProcess();
+    } catch (const std::runtime_error& error) {
+        scePadRegisterCollaboInputMgrProcessCaught = (std::string(error.what()) == "scePadRegisterCollaboInputMgrProcess not implemented");
+    }
+    Require(scePadRegisterCollaboInputMgrProcessCaught);
+    bool scePadGetTelemetryInfoCaught = false;
+    try {
+        scePadGetTelemetryInfo(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetTelemetryInfoCaught = (std::string(error.what()) == "scePadGetTelemetryInfo not implemented");
+    }
+    Require(scePadGetTelemetryInfoCaught);
     const int handle2 = scePadOpen_nid_postfix(user2, 0, 0, nullptr);
     Require(handle2 == PAD_HANDLE_BASE + 1);
     Require(scePadGetHandle(user2, 0, 0) == handle2);
