@@ -107,6 +107,25 @@ void TestFiles() {
     Require(_ZNSt10filesystem12_Current_getERA260_c_nid_postfix(current) && std::strcmp(current, expected) == 0, "current directory");
 }
 
+template <typename TCall>
+bool ReportsNotImplemented(const char* name, TCall call) {
+    try {
+        call();
+    } catch (const std::runtime_error& error) {
+        return std::string(error.what()) == std::string(name) + " not implemented";
+    }
+    return false;
+}
+
+void TestUnimplemented() {
+    Require(ReportsNotImplemented("_ZNSt10filesystem18_Xfilesystem_errorEPKcSt10error_code_nid_postfix", [] {
+        _ZNSt10filesystem18_Xfilesystem_errorEPKcSt10error_code_nid_postfix();
+    }), "_ZNSt10filesystem18_Xfilesystem_errorEPKcSt10error_code_nid_postfix did not report unimplemented");
+    Require(ReportsNotImplemented("_ZNSt10filesystem18_Xfilesystem_errorEPKcRKNS_4pathESt10error_code_nid_postfix", [] {
+        _ZNSt10filesystem18_Xfilesystem_errorEPKcRKNS_4pathESt10error_code_nid_postfix();
+    }), "_ZNSt10filesystem18_Xfilesystem_errorEPKcRKNS_4pathESt10error_code_nid_postfix did not report unimplemented");
+}
+
 }
 
 int main() {
@@ -116,6 +135,7 @@ int main() {
     TestSizeAndTime();
     TestDirectories();
     TestFiles();
+    TestUnimplemented();
     std::error_code ignored;
     std::filesystem::remove_all(root, ignored);
     return 0;
