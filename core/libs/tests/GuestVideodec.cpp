@@ -197,6 +197,20 @@ void testQueryResourceInfo() {
     check(shortResource.cpuMemorySize == 7 && shortResource.maxFrameBufferSize == 7, "a refused query wrote the resource information");
 }
 
+template <typename TCall>
+bool reportsNotImplemented(const char* name, TCall call) {
+    try {
+        call();
+    } catch (const std::runtime_error& error) {
+        return std::string(error.what()) == std::string(name) + " not implemented";
+    }
+    return false;
+}
+
+void testUnimplemented() {
+    check(reportsNotImplemented("sceVideodecMapMemory", [] { sceVideodecMapMemory(); }), "sceVideodecMapMemory did not report unimplemented");
+}
+
 }
 
 int main() {
@@ -206,6 +220,7 @@ int main() {
         testErrors();
         testReset();
         testQueryResourceInfo();
+        testUnimplemented();
         std::puts("Videodec tests passed");
         return 0;
     } catch (const std::exception& error) {
