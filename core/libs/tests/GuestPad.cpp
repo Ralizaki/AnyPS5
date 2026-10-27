@@ -714,6 +714,83 @@ int main() {
 
     const int user2 = 0x10000001;
     Require(scePadGetHandle(user2, 0, 0) == noHandle);
+    bool vrCombinedCaught = false;
+    try {
+        scePadVrControllerReadCombinedState(0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        vrCombinedCaught = (std::string(error.what()) == "scePadVrControllerReadCombinedState not implemented");
+    }
+    Require(vrCombinedCaught);
+    bool vrTriggerEffectCaught = false;
+    try {
+        scePadVrControllerSetTriggerEffect(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        vrTriggerEffectCaught = (std::string(error.what()) == "scePadVrControllerSetTriggerEffect not implemented");
+    }
+    Require(vrTriggerEffectCaught);
+    bool vrDeviceInfoCaught = false;
+    try {
+        scePadVrControllerGetDeviceInformation(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        vrDeviceInfoCaught = (std::string(error.what()) == "scePadVrControllerGetDeviceInformation not implemented");
+    }
+    Require(vrDeviceInfoCaught);
+    bool vrTriggerEffectsCaught = false;
+    try {
+        scePadVrControllerSetTriggerEffects(0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        vrTriggerEffectsCaught = (std::string(error.what()) == "scePadVrControllerSetTriggerEffects not implemented");
+    }
+    Require(vrTriggerEffectsCaught);
+    bool vrVibrationCaught = false;
+    try {
+        scePadVrControllerSetVibration(0, 0);
+    } catch (const std::runtime_error& error) {
+        vrVibrationCaught = (std::string(error.what()) == "scePadVrControllerSetVibration not implemented");
+    }
+    Require(vrVibrationCaught);
+    bool vrUsbStatusCaught = false;
+    try {
+        scePadVrControllerGetPhysicalUsbConnectionStatus(nullptr);
+    } catch (const std::runtime_error& error) {
+        vrUsbStatusCaught = (std::string(error.what()) == "scePadVrControllerGetPhysicalUsbConnectionStatus not implemented");
+    }
+    Require(vrUsbStatusCaught);
+    bool vrVibModeCaught = false;
+    try {
+        scePadVrControllerSetVibrationMode(0, 0);
+    } catch (const std::runtime_error& error) {
+        vrVibModeCaught = (std::string(error.what()) == "scePadVrControllerSetVibrationMode not implemented");
+    }
+    Require(vrVibModeCaught);
+    bool vrReadStateCaught = false;
+    try {
+        scePadVrControllerReadState(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        vrReadStateCaught = (std::string(error.what()) == "scePadVrControllerReadState not implemented");
+    }
+    Require(vrReadStateCaught);
+    bool vrSingleTriggerEffectStateCaught = false;
+    try {
+        scePadVrControllerGetTriggerEffectState(0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        vrSingleTriggerEffectStateCaught = (std::string(error.what()) == "scePadVrControllerGetTriggerEffectState not implemented");
+    }
+    Require(vrSingleTriggerEffectStateCaught);
+    bool vrTriggerEffectStatesCaught = false;
+    try {
+        scePadVrControllerGetTriggerEffectStates(0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        vrTriggerEffectStatesCaught = (std::string(error.what()) == "scePadVrControllerGetTriggerEffectStates not implemented");
+    }
+    Require(vrTriggerEffectStatesCaught);
+    bool vrReadCaught = false;
+    try {
+        scePadVrControllerRead(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        vrReadCaught = (std::string(error.what()) == "scePadVrControllerRead not implemented");
+    }
+    Require(vrReadCaught);
     const int handle2 = scePadOpen_nid_postfix(user2, 0, 0, nullptr);
     Require(handle2 == PAD_HANDLE_BASE + 1);
     Require(scePadGetHandle(user2, 0, 0) == handle2);
