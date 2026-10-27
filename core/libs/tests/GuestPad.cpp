@@ -714,6 +714,153 @@ int main() {
 
     const int user2 = 0x10000001;
     Require(scePadGetHandle(user2, 0, 0) == noHandle);
+    bool scePadReadExtCaught = false;
+    try {
+        scePadReadExt(handle, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadReadExtCaught = (std::string(error.what()) == "scePadReadExt not implemented");
+    }
+    Require(scePadReadExtCaught);
+    bool scePadGetFeatureReportCaught = false;
+    try {
+        scePadGetFeatureReport(handle, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadGetFeatureReportCaught = (std::string(error.what()) == "scePadGetFeatureReport not implemented");
+    }
+    Require(scePadGetFeatureReportCaught);
+    bool scePadSetFeatureReportCaught = false;
+    try {
+        scePadSetFeatureReport(handle, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetFeatureReportCaught = (std::string(error.what()) == "scePadSetFeatureReport not implemented");
+    }
+    Require(scePadSetFeatureReportCaught);
+    bool scePadOutputReportCaught = false;
+    try {
+        scePadOutputReport(handle, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadOutputReportCaught = (std::string(error.what()) == "scePadOutputReport not implemented");
+    }
+    Require(scePadOutputReportCaught);
+    bool scePadSetAngularVelocityBiasCorrectionStateCaught = false;
+    try {
+        scePadSetAngularVelocityBiasCorrectionState(handle, true);
+    } catch (const std::runtime_error& error) {
+        scePadSetAngularVelocityBiasCorrectionStateCaught = (std::string(error.what()) == "scePadSetAngularVelocityBiasCorrectionState not implemented");
+    }
+    Require(scePadSetAngularVelocityBiasCorrectionStateCaught);
+    bool scePadSetTriggerEffectExtCaught = false;
+    try {
+        scePadSetTriggerEffectExt(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetTriggerEffectExtCaught = (std::string(error.what()) == "scePadSetTriggerEffectExt not implemented");
+    }
+    Require(scePadSetTriggerEffectExtCaught);
+    bool scePadLastLotusButtonDataCaught = false;
+    try {
+        scePadLastLotusButtonData(handle, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadLastLotusButtonDataCaught = (std::string(error.what()) == "scePadLastLotusButtonData not implemented");
+    }
+    Require(scePadLastLotusButtonDataCaught);
+    bool scePadReadStateExtCaught = false;
+    try {
+        scePadReadStateExt(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadReadStateExtCaught = (std::string(error.what()) == "scePadReadStateExt not implemented");
+    }
+    Require(scePadReadStateExtCaught);
+    bool scePadSetExtensionReportCaught = false;
+    try {
+        scePadSetExtensionReport(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetExtensionReportCaught = (std::string(error.what()) == "scePadSetExtensionReport not implemented");
+    }
+    Require(scePadSetExtensionReportCaught);
+    bool scePadGetExtensionUnitInfoCaught = false;
+    try {
+        scePadGetExtensionUnitInfo(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetExtensionUnitInfoCaught = (std::string(error.what()) == "scePadGetExtensionUnitInfo not implemented");
+    }
+    Require(scePadGetExtensionUnitInfoCaught);
+    bool scePadSetLoginUserNumberCaught = false;
+    try {
+        scePadSetLoginUserNumber(0);
+    } catch (const std::runtime_error& error) {
+        scePadSetLoginUserNumberCaught = (std::string(error.what()) == "scePadSetLoginUserNumber not implemented");
+    }
+    Require(scePadSetLoginUserNumberCaught);
+    bool scePadGetCapabilityCaught = false;
+    try {
+        scePadGetCapability(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetCapabilityCaught = (std::string(error.what()) == "scePadGetCapability not implemented");
+    }
+    Require(scePadGetCapabilityCaught);
+    bool scePadShareOutputDataCaught = false;
+    try {
+        scePadShareOutputData(0, 0);
+    } catch (const std::runtime_error& error) {
+        scePadShareOutputDataCaught = (std::string(error.what()) == "scePadShareOutputData not implemented");
+    }
+    Require(scePadShareOutputDataCaught);
+    bool scePadShareOutputDataWithFunctionTypeCaught = false;
+    try {
+        scePadShareOutputDataWithFunctionType(0, 0, 0);
+    } catch (const std::runtime_error& error) {
+        scePadShareOutputDataWithFunctionTypeCaught = (std::string(error.what()) == "scePadShareOutputDataWithFunctionType not implemented");
+    }
+    Require(scePadShareOutputDataWithFunctionTypeCaught);
+    bool scePadSetVibrationForceCaught = false;
+    try {
+        scePadSetVibrationForce(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetVibrationForceCaught = (std::string(error.what()) == "scePadSetVibrationForce not implemented");
+    }
+    Require(scePadSetVibrationForceCaught);
+    bool scePadGetVersionInfoCaught = false;
+    try {
+        scePadGetVersionInfo(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetVersionInfoCaught = (std::string(error.what()) == "scePadGetVersionInfo not implemented");
+    }
+    Require(scePadGetVersionInfoCaught);
+    bool scePadDisableDataConversionCaught = false;
+    try {
+        scePadDisableDataConversion(handle, false);
+    } catch (const std::runtime_error& error) {
+        scePadDisableDataConversionCaught = (std::string(error.what()) == "scePadDisableDataConversion not implemented");
+    }
+    Require(scePadDisableDataConversionCaught);
+    bool scePadSetButtonRemappingInfoCaught = false;
+    try {
+        scePadSetButtonRemappingInfo(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetButtonRemappingInfoCaught = (std::string(error.what()) == "scePadSetButtonRemappingInfo not implemented");
+    }
+    Require(scePadSetButtonRemappingInfoCaught);
+    bool scePadSetProcessPrivilegeOfButtonRemappingCaught = false;
+    try {
+        scePadSetProcessPrivilegeOfButtonRemapping(false);
+    } catch (const std::runtime_error& error) {
+        scePadSetProcessPrivilegeOfButtonRemappingCaught = (std::string(error.what()) == "scePadSetProcessPrivilegeOfButtonRemapping not implemented");
+    }
+    Require(scePadSetProcessPrivilegeOfButtonRemappingCaught);
+    bool scePadSetForceInterceptedCaught = false;
+    try {
+        scePadSetForceIntercepted(false);
+    } catch (const std::runtime_error& error) {
+        scePadSetForceInterceptedCaught = (std::string(error.what()) == "scePadSetForceIntercepted not implemented");
+    }
+    Require(scePadSetForceInterceptedCaught);
+    bool scePadSwitchConnectionCaught = false;
+    try {
+        scePadSwitchConnection(handle, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSwitchConnectionCaught = (std::string(error.what()) == "scePadSwitchConnection not implemented");
+    }
+    Require(scePadSwitchConnectionCaught);
     const int handle2 = scePadOpen_nid_postfix(user2, 0, 0, nullptr);
     Require(handle2 == PAD_HANDLE_BASE + 1);
     Require(scePadGetHandle(user2, 0, 0) == handle2);
