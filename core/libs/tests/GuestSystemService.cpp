@@ -151,4 +151,21 @@ int main() {
     event.event_type = 7;
     Require(sceSystemServiceReceiveEvent(&event) == SYSTEM_SERVICE_ERROR_NO_EVENT);
     TestPlayerDialogParam();
+    Require(Throws([] { sceSystemServiceSwitchToVRApp(); }));
+    Require(Throws([] { sceSystemServiceSwitchToNonVRApp(); }));
+    Require(Throws([] { sceSystemServiceGetSpotifyTitleId(); }));
+    Require(Throws([] { sceCsbMgrInitialize(); }));
+    Require(Throws([] { sceCsbMgrTerminate(); }));
+    Require(Throws([] { sceCsbMgrCreateLocalSandbox(); }));
+    Require(Throws([] { sceCsbMgrDestroyLocalSandbox(); }));
+    Require(Throws([] { sceCsbMgrSwitchLocalSandbox(); }));
+    Require(Throws([] { sceCsbMgrGetCurrentLocalSandboxId(); }));
+    Require(Throws([] { sceCsbMgrGetLocalSandboxIdList(); }));
+    Require(Throws([] { sceSystemStateMgrTickVideoPlayback(); }));
+    Require(Throws([] { sceSystemStateMgrGetRebootCause(); }));
+    Require(Throws([] { sceShellCoreUtilStartUmmDictation(); }));
+    Require(Throws([] { sceShellCoreUtilIsDddTemperatureDanger(); }));
+    Require(Throws([] { sceShellCoreUtilIsM2StorageTemperatureDanger(); }));
+    Require(Throws([] { sceShellCoreUtilGetAvailableSizeM2(); }));
+    Require(Throws([] { sceShellCoreUtilIsEChassisVariant(); }));
 }
