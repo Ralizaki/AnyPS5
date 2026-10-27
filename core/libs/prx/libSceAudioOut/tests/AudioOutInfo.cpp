@@ -1,4 +1,5 @@
 #include "prx/libSceAudioOut/include/AudioOut.hpp"
+#include "prx/libSceAudioOut/include/AudioOut2.hpp"
 #include "prx/libc/include/general/VabiMacros.hpp"
 
 #include <cstdio>
@@ -71,6 +72,35 @@ int main() {
     Require(Throws([] { sceAudioOutSysHdmiMonitorInfoIsSupportedAudioOutMode(); }), "sceAudioOutSysHdmiMonitorInfoIsSupportedAudioOutMode not implemented");
     Require(Throws([] { sceAudioOutSysGetSystemInfo(); }), "sceAudioOutSysGetSystemInfo not implemented");
     Require(Throws([] { sceAudioOutSysGetOutputInfo(); }), "sceAudioOutSysGetOutputInfo not implemented");
+
+    Require(Throws([] { sceAudioOut2UserCreateEx(); }), "sceAudioOut2UserCreateEx not implemented");
+    Require(Throws([] { sceAudioOut2ArbitrationInitialize(); }), "sceAudioOut2ArbitrationInitialize not implemented");
+    Require(Throws([] { sceAudioOut2MbusInit(); }), "sceAudioOut2MbusInit not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetPortConnections(); }), "sceAudioOut2MbusSetPortConnections not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetConnections(); }), "sceAudioOut2MbusSetConnections not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetPortStatuses(); }), "sceAudioOut2MbusSetPortStatuses not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetHeadphoneOutMode(); }), "sceAudioOut2MbusSetHeadphoneOutMode not implemented");
+    Require(Throws([] { sceAudioOut2MbusUserLoginFor3DAudio(); }), "sceAudioOut2MbusUserLoginFor3DAudio not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetDeviceConnections(); }), "sceAudioOut2MbusSetDeviceConnections not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetMorpheusParam(); }), "sceAudioOut2MbusSetMorpheusParam not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetCaesarParam(); }), "sceAudioOut2MbusSetCaesarParam not implemented");
+    Require(Throws([] { sceAudioOut2MbusSetSparkParam(); }), "sceAudioOut2MbusSetSparkParam not implemented");
+    Require(Throws([] { sceAudioOut2AllAudioMainToHeadphoneForDiag(); }), "sceAudioOut2AllAudioMainToHeadphoneForDiag not implemented");
+    Require(Throws([] { sceAudioOut2LoPortGetStateEx(); }), "sceAudioOut2LoPortGetStateEx not implemented");
+    Require(Throws([] { sceAudioOut2ReportRegisterHandler(); }), "sceAudioOut2ReportRegisterHandler not implemented");
+    Require(Throws([] { sceAudioOut2ReportUnregisterHandler(); }), "sceAudioOut2ReportUnregisterHandler not implemented");
+    Require(Throws([] { sceAudioOut2GetTvCorrectionInfo(); }), "sceAudioOut2GetTvCorrectionInfo not implemented");
+    Require(Throws([] { sceAudioOut2GetIpcHandle(); }), "sceAudioOut2GetIpcHandle not implemented");
+    Require(Throws([] { sceAudioOut2GetSystemStateEx(); }), "sceAudioOut2GetSystemStateEx not implemented");
+    Require(Throws([] { sceAudioOut2SetDebugHeadphoneMode(); }), "sceAudioOut2SetDebugHeadphoneMode not implemented");
+    Require(Throws([] { sceAudioOut2DebugStateCtrl(); }), "sceAudioOut2DebugStateCtrl not implemented");
+    Require(Throws([] { sceAudioOut2ContextBedWrite(); }), "sceAudioOut2ContextBedWrite not implemented");
+    Require(Throws([] { sceAudioOut2PortCreateEx(); }), "sceAudioOut2PortCreateEx not implemented");
+    Require(Throws([] { sceAudioOut2Terminate(); }), "sceAudioOut2Terminate not implemented");
+    Require(Throws([] { sceAudioOut2PortRegister(); }), "sceAudioOut2PortRegister not implemented");
+    Require(Throws([] { sceAudioOut2PortUnregister(); }), "sceAudioOut2PortUnregister not implemented");
+    Require(Throws([] { sceAudioOut2GetAmbisonicsEncodeCoefficients(); }), "sceAudioOut2GetAmbisonicsEncodeCoefficients not implemented");
+    Require(Throws([] { sceAudioOut2GetHrtfIdForCronos(); }), "sceAudioOut2GetHrtfIdForCronos not implemented");
 
     std::puts("audio out info calls: PASS");
 }
