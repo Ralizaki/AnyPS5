@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
+#include <string>
 #include <source_location>
 #include "prx/libSceNet/libSceNet.hpp"
 
@@ -68,4 +70,180 @@ int main() {
         CheckProtocol(client, 6);
         for (const int socket : {accepted, client, listener}) Require(sceNetSocketClose(socket) == 0);
     }
+
+    bool sceNetConfigWlanAdhocJoinCaught = false;
+    try {
+        sceNetConfigWlanAdhocJoin(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocJoinCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocJoin not implemented");
+    }
+    Require(sceNetConfigWlanAdhocJoinCaught);
+    bool sceNetConfigWlanAdhocLeaveCaught = false;
+    try {
+        sceNetConfigWlanAdhocLeave(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocLeaveCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocLeave not implemented");
+    }
+    Require(sceNetConfigWlanAdhocLeaveCaught);
+    bool sceNetConfigWlanAdhocPspEmuClearWakeOnWlanCaught = false;
+    try {
+        sceNetConfigWlanAdhocPspEmuClearWakeOnWlan(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocPspEmuClearWakeOnWlanCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocPspEmuClearWakeOnWlan not implemented");
+    }
+    Require(sceNetConfigWlanAdhocPspEmuClearWakeOnWlanCaught);
+    bool sceNetConfigWlanAdhocPspEmuGetWakeOnWlanInfoCaught = false;
+    try {
+        sceNetConfigWlanAdhocPspEmuGetWakeOnWlanInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocPspEmuGetWakeOnWlanInfoCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocPspEmuGetWakeOnWlanInfo not implemented");
+    }
+    Require(sceNetConfigWlanAdhocPspEmuGetWakeOnWlanInfoCaught);
+    bool sceNetConfigWlanAdhocPspEmuSetWakeOnWlanCaught = false;
+    try {
+        sceNetConfigWlanAdhocPspEmuSetWakeOnWlan(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocPspEmuSetWakeOnWlanCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocPspEmuSetWakeOnWlan not implemented");
+    }
+    Require(sceNetConfigWlanAdhocPspEmuSetWakeOnWlanCaught);
+    bool sceNetConfigWlanAdhocScanJoinCaught = false;
+    try {
+        sceNetConfigWlanAdhocScanJoin(0, nullptr, nullptr, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocScanJoinCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocScanJoin not implemented");
+    }
+    Require(sceNetConfigWlanAdhocScanJoinCaught);
+    bool sceNetConfigWlanAdhocSetExtInfoElementCaught = false;
+    try {
+        sceNetConfigWlanAdhocSetExtInfoElement(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocSetExtInfoElementCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocSetExtInfoElement not implemented");
+    }
+    Require(sceNetConfigWlanAdhocSetExtInfoElementCaught);
+    bool sceNetConfigWlanAdhocSetWakeOnWlanCaught = false;
+    try {
+        sceNetConfigWlanAdhocSetWakeOnWlan(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocSetWakeOnWlanCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocSetWakeOnWlan not implemented");
+    }
+    Require(sceNetConfigWlanAdhocSetWakeOnWlanCaught);
+    bool sceNetConfigWlanApStartCaught = false;
+    try {
+        sceNetConfigWlanApStart(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanApStartCaught = (std::string(error.what()) == "sceNetConfigWlanApStart not implemented");
+    }
+    Require(sceNetConfigWlanApStartCaught);
+    bool sceNetConfigWlanApStopCaught = false;
+    try {
+        sceNetConfigWlanApStop(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanApStopCaught = (std::string(error.what()) == "sceNetConfigWlanApStop not implemented");
+    }
+    Require(sceNetConfigWlanApStopCaught);
+    bool sceNetConfigWlanBackgroundScanQueryCaught = false;
+    try {
+        sceNetConfigWlanBackgroundScanQuery(0, nullptr, 0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanBackgroundScanQueryCaught = (std::string(error.what()) == "sceNetConfigWlanBackgroundScanQuery not implemented");
+    }
+    Require(sceNetConfigWlanBackgroundScanQueryCaught);
+    bool sceNetConfigWlanBackgroundScanStartCaught = false;
+    try {
+        sceNetConfigWlanBackgroundScanStart(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanBackgroundScanStartCaught = (std::string(error.what()) == "sceNetConfigWlanBackgroundScanStart not implemented");
+    }
+    Require(sceNetConfigWlanBackgroundScanStartCaught);
+    bool sceNetConfigWlanBackgroundScanStopCaught = false;
+    try {
+        sceNetConfigWlanBackgroundScanStop(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanBackgroundScanStopCaught = (std::string(error.what()) == "sceNetConfigWlanBackgroundScanStop not implemented");
+    }
+    Require(sceNetConfigWlanBackgroundScanStopCaught);
+    bool sceNetConfigWlanDiagGetDeviceInfoCaught = false;
+    try {
+        sceNetConfigWlanDiagGetDeviceInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanDiagGetDeviceInfoCaught = (std::string(error.what()) == "sceNetConfigWlanDiagGetDeviceInfo not implemented");
+    }
+    Require(sceNetConfigWlanDiagGetDeviceInfoCaught);
+    bool sceNetConfigWlanDiagSetAntennaCaught = false;
+    try {
+        sceNetConfigWlanDiagSetAntenna(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanDiagSetAntennaCaught = (std::string(error.what()) == "sceNetConfigWlanDiagSetAntenna not implemented");
+    }
+    Require(sceNetConfigWlanDiagSetAntennaCaught);
+    bool sceNetConfigWlanDiagSetTxFixedRateCaught = false;
+    try {
+        sceNetConfigWlanDiagSetTxFixedRate(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanDiagSetTxFixedRateCaught = (std::string(error.what()) == "sceNetConfigWlanDiagSetTxFixedRate not implemented");
+    }
+    Require(sceNetConfigWlanDiagSetTxFixedRateCaught);
+    bool sceNetConfigWlanGetDeviceConfigCaught = false;
+    try {
+        sceNetConfigWlanGetDeviceConfig(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanGetDeviceConfigCaught = (std::string(error.what()) == "sceNetConfigWlanGetDeviceConfig not implemented");
+    }
+    Require(sceNetConfigWlanGetDeviceConfigCaught);
+    bool sceNetConfigWlanInfraGetRssiInfoCaught = false;
+    try {
+        sceNetConfigWlanInfraGetRssiInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanInfraGetRssiInfoCaught = (std::string(error.what()) == "sceNetConfigWlanInfraGetRssiInfo not implemented");
+    }
+    Require(sceNetConfigWlanInfraGetRssiInfoCaught);
+    bool sceNetConfigWlanInfraLeaveCaught = false;
+    try {
+        sceNetConfigWlanInfraLeave(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanInfraLeaveCaught = (std::string(error.what()) == "sceNetConfigWlanInfraLeave not implemented");
+    }
+    Require(sceNetConfigWlanInfraLeaveCaught);
+    bool sceNetConfigWlanInfraScanJoinCaught = false;
+    try {
+        sceNetConfigWlanInfraScanJoin(0, nullptr, nullptr, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanInfraScanJoinCaught = (std::string(error.what()) == "sceNetConfigWlanInfraScanJoin not implemented");
+    }
+    Require(sceNetConfigWlanInfraScanJoinCaught);
+    bool sceNetConfigWlanScanCaught = false;
+    try {
+        sceNetConfigWlanScan(0, nullptr, 0, nullptr, 0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanScanCaught = (std::string(error.what()) == "sceNetConfigWlanScan not implemented");
+    }
+    Require(sceNetConfigWlanScanCaught);
+    bool sceNetConfigWlanSetDeviceConfigCaught = false;
+    try {
+        sceNetConfigWlanSetDeviceConfig(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanSetDeviceConfigCaught = (std::string(error.what()) == "sceNetConfigWlanSetDeviceConfig not implemented");
+    }
+    Require(sceNetConfigWlanSetDeviceConfigCaught);
+    bool sceNetConfigEtherGetLinkModeCaught = false;
+    try {
+        sceNetConfigEtherGetLinkMode(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigEtherGetLinkModeCaught = (std::string(error.what()) == "sceNetConfigEtherGetLinkMode not implemented");
+    }
+    Require(sceNetConfigEtherGetLinkModeCaught);
+    bool sceNetConfigEtherPostPlugInOutEventCaught = false;
+    try {
+        sceNetConfigEtherPostPlugInOutEvent(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigEtherPostPlugInOutEventCaught = (std::string(error.what()) == "sceNetConfigEtherPostPlugInOutEvent not implemented");
+    }
+    Require(sceNetConfigEtherPostPlugInOutEventCaught);
+    bool sceNetConfigEtherSetLinkModeCaught = false;
+    try {
+        sceNetConfigEtherSetLinkMode(0, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigEtherSetLinkModeCaught = (std::string(error.what()) == "sceNetConfigEtherSetLinkMode not implemented");
+    }
+    Require(sceNetConfigEtherSetLinkModeCaught);
 }
