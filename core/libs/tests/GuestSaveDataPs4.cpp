@@ -112,6 +112,17 @@ void TestMountPs4() {
     Check(result.mount_point.data[0] != '\0', "mount writes mount point");
     Check(sceSaveDataUmount(&result.mount_point) == 0, "umount mounted point succeeds");
     Check(sceSaveDataUmount(&result.mount_point) == SaveDataErrorNotMounted, "umount unmounted point is NOT_MOUNTED");
+    SceSaveDataTitleId foreignTitle{};
+    std::strcpy(foreignTitle.data, "CUSA12345");
+    mount.title_id = &foreignTitle;
+    bool foreignTitleCaught = false;
+    try {
+        sceSaveDataMount(&mount, &result);
+    } catch (const std::runtime_error& error) {
+        foreignTitleCaught = (std::string(error.what()) == "sceSaveDataMount of another title's save data not implemented");
+    }
+    Check(foreignTitleCaught, "mount with another title_id throws not implemented");
+    mount.title_id = nullptr;
 }
 
 }
