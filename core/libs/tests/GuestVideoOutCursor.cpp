@@ -25,5 +25,8 @@ int main() {
     passed = ReportsNotImplemented("sceVideoOutCursorSetImageAddress", [] { return sceVideoOutCursorSetImageAddress(1, 0, image); }) && passed;
     passed = ReportsNotImplemented("sceVideoOutCursorSetPosition", [] { return sceVideoOutCursorSetPosition(1, 0, 960, 540); }) && passed;
     passed = ReportsNotImplemented("sceVideoOutCursorDisable", [] { return sceVideoOutCursorDisable(1, 0); }) && passed;
+    passed = ReportsNotImplemented("sceVideoOutSetFlipMaster", [] { return sceVideoOutSetFlipMaster(1, 2); }) && passed;
+    passed = ReportsNotImplemented("sceVideoOutClearFlipMaster", [] { return sceVideoOutClearFlipMaster(1); }) && passed;
+    passed = ReportsNotImplemented("sceDbgVideoOutAddOutputModeVr60Privilege", [] { return sceDbgVideoOutAddOutputModeVr60Privilege(); }) && passed;
     return passed ? 0 : 1;
 }
