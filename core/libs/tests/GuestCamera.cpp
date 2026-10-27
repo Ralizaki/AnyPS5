@@ -138,5 +138,16 @@ int main() {
     CheckClose();
     RequireNotImplemented([] { sceCameraSetVideoSync(); }, "sceCameraSetVideoSync");
     RequireNotImplemented([] { sceCameraGetCalibData(); }, "sceCameraGetCalibData");
+    RequireNotImplemented([] { sceCameraGetDeviceIDWithoutOpen(); }, "sceCameraGetDeviceIDWithoutOpen");
+    RequireNotImplemented([] { sceCameraAudioClose(); }, "sceCameraAudioClose");
+    RequireNotImplemented([] { sceCamera2Initialize(); }, "sceCamera2Initialize");
+    RequireNotImplemented([] { sceCamera2Finalize(); }, "sceCamera2Finalize");
+    RequireNotImplemented([] { sceCamera2Open(); }, "sceCamera2Open");
+    RequireNotImplemented([] { sceCamera2Close(); }, "sceCamera2Close");
+    RequireNotImplemented([] { sceCamera2Start(); }, "sceCamera2Start");
+    RequireNotImplemented([] { sceCamera2Stop(); }, "sceCamera2Stop");
+    RequireNotImplemented([] { sceCamera2IsAttached(); }, "sceCamera2IsAttached");
+    RequireNotImplemented([] { sceCamera2GetFrameData(); }, "sceCamera2GetFrameData");
+    RequireNotImplemented([] { sceCamera2IsValidFrameData(); }, "sceCamera2IsValidFrameData");
     return 0;
 }
