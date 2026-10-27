@@ -4,6 +4,8 @@
 #include <atomic>
 #include <cstdint>
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
 #include <thread>
 #include <vector>
 
@@ -174,4 +176,18 @@ int main() {
     Mfsr1OnBaseConsole();
     Mfsr2OnBaseConsole();
     ConcurrentCreatesUninitialized();
+    bool scePsmlMfsrEnableSpecularAACaught = false;
+    try {
+        scePsmlMfsrEnableSpecularAA();
+    } catch (const std::runtime_error& error) {
+        scePsmlMfsrEnableSpecularAACaught = (std::string(error.what()) == "scePsmlMfsrEnableSpecularAA not implemented");
+    }
+    Require(scePsmlMfsrEnableSpecularAACaught);
+    bool scePsmlMfsrEnableQuality8KCaught = false;
+    try {
+        scePsmlMfsrEnableQuality8K();
+    } catch (const std::runtime_error& error) {
+        scePsmlMfsrEnableQuality8KCaught = (std::string(error.what()) == "scePsmlMfsrEnableQuality8K not implemented");
+    }
+    Require(scePsmlMfsrEnableQuality8KCaught);
 }
