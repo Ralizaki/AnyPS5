@@ -1,4 +1,5 @@
 #include "prx/libSceAvPlayer/include/Api.hpp"
+#include "prx/libSceAvPlayer.native/include/Api.hpp"
 #include <algorithm>
 #include <array>
 #include <chrono>
@@ -2068,6 +2069,20 @@ int main(int argc, char** argv) {
         TestAudioEofClockRebase();
         TestAudioClockAdvancesAfterEof();
         TestTrailingVideoAfterShortAudio();
+        bool sceAvPlayerPrintfCaught = false;
+        try {
+            sceAvPlayerPrintf();
+        } catch (const std::runtime_error& error) {
+            sceAvPlayerPrintfCaught = (std::string(error.what()) == "sceAvPlayerPrintf not implemented");
+        }
+        Check(sceAvPlayerPrintfCaught, "sceAvPlayerPrintf should throw");
+        bool sceAvPlayerVprintfCaught = false;
+        try {
+            sceAvPlayerVprintf();
+        } catch (const std::runtime_error& error) {
+            sceAvPlayerVprintfCaught = (std::string(error.what()) == "sceAvPlayerVprintf not implemented");
+        }
+        Check(sceAvPlayerVprintfCaught, "sceAvPlayerVprintf should throw");
         std::puts("AvPlayer tests passed");
         return 0;
     } catch (const std::exception& error) {
