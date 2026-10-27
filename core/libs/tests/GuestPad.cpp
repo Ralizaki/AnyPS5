@@ -10,6 +10,7 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <utility>
@@ -714,6 +715,140 @@ int main() {
 
     const int user2 = 0x10000001;
     Require(scePadGetHandle(user2, 0, 0) == noHandle);
+
+    bool scePadVertualDeviceAddDeviceCaught = false;
+    try {
+        scePadVertualDeviceAddDevice(nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadVertualDeviceAddDeviceCaught = (std::string(error.what()) == "scePadVertualDeviceAddDevice not implemented");
+    }
+    Require(scePadVertualDeviceAddDeviceCaught);
+    bool scePadVirtualDeviceAddDeviceCaught = false;
+    try {
+        scePadVirtualDeviceAddDevice(nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadVirtualDeviceAddDeviceCaught = (std::string(error.what()) == "scePadVirtualDeviceAddDevice not implemented");
+    }
+    Require(scePadVirtualDeviceAddDeviceCaught);
+    bool scePadVirtualDeviceDeleteDeviceCaught = false;
+    try {
+        scePadVirtualDeviceDeleteDevice(0);
+    } catch (const std::runtime_error& error) {
+        scePadVirtualDeviceDeleteDeviceCaught = (std::string(error.what()) == "scePadVirtualDeviceDeleteDevice not implemented");
+    }
+    Require(scePadVirtualDeviceDeleteDeviceCaught);
+    bool scePadVirtualDeviceInsertDataCaught = false;
+    try {
+        scePadVirtualDeviceInsertData(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadVirtualDeviceInsertDataCaught = (std::string(error.what()) == "scePadVirtualDeviceInsertData not implemented");
+    }
+    Require(scePadVirtualDeviceInsertDataCaught);
+    bool scePadVirtualDeviceInsertTriggerInternalStateCaught = false;
+    try {
+        scePadVirtualDeviceInsertTriggerInternalState(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadVirtualDeviceInsertTriggerInternalStateCaught = (std::string(error.what()) == "scePadVirtualDeviceInsertTriggerInternalState not implemented");
+    }
+    Require(scePadVirtualDeviceInsertTriggerInternalStateCaught);
+    bool scePadVirtualDeviceSetTriggerEffectSettingCaught = false;
+    try {
+        scePadVirtualDeviceSetTriggerEffectSetting(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadVirtualDeviceSetTriggerEffectSettingCaught = (std::string(error.what()) == "scePadVirtualDeviceSetTriggerEffectSetting not implemented");
+    }
+    Require(scePadVirtualDeviceSetTriggerEffectSettingCaught);
+    bool scePadSetShareButtonMaskForRemotePlayCaught = false;
+    try {
+        scePadSetShareButtonMaskForRemotePlay(0);
+    } catch (const std::runtime_error& error) {
+        scePadSetShareButtonMaskForRemotePlayCaught = (std::string(error.what()) == "scePadSetShareButtonMaskForRemotePlay not implemented");
+    }
+    Require(scePadSetShareButtonMaskForRemotePlayCaught);
+    bool scePadSetPS4BcVibrationModeCaught = false;
+    try {
+        scePadSetPS4BcVibrationMode(0);
+    } catch (const std::runtime_error& error) {
+        scePadSetPS4BcVibrationModeCaught = (std::string(error.what()) == "scePadSetPS4BcVibrationMode not implemented");
+    }
+    Require(scePadSetPS4BcVibrationModeCaught);
+    bool scePadSetVirtualDeviceComponentInformationCaught = false;
+    try {
+        scePadSetVirtualDeviceComponentInformation(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetVirtualDeviceComponentInformationCaught = (std::string(error.what()) == "scePadSetVirtualDeviceComponentInformation not implemented");
+    }
+    Require(scePadSetVirtualDeviceComponentInformationCaught);
+    bool scePadEnablePs4CompatibleModeCaught = false;
+    try {
+        scePadEnablePs4CompatibleMode(handle, false);
+    } catch (const std::runtime_error& error) {
+        scePadEnablePs4CompatibleModeCaught = (std::string(error.what()) == "scePadEnablePs4CompatibleMode not implemented");
+    }
+    Require(scePadEnablePs4CompatibleModeCaught);
+    bool scePadGetLicenseControllerInformationCaught = false;
+    try {
+        scePadGetLicenseControllerInformation(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetLicenseControllerInformationCaught = (std::string(error.what()) == "scePadGetLicenseControllerInformation not implemented");
+    }
+    Require(scePadGetLicenseControllerInformationCaught);
+    bool scePadReadHistoryCaught = false;
+    try {
+        scePadReadHistory(handle, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadReadHistoryCaught = (std::string(error.what()) == "scePadReadHistory not implemented");
+    }
+    Require(scePadReadHistoryCaught);
+    bool scePadStartRecordingCaught = false;
+    try {
+        scePadStartRecording();
+    } catch (const std::runtime_error& error) {
+        scePadStartRecordingCaught = (std::string(error.what()) == "scePadStartRecording not implemented");
+    }
+    Require(scePadStartRecordingCaught);
+    bool scePadStopRecordingCaught = false;
+    try {
+        scePadStopRecording();
+    } catch (const std::runtime_error& error) {
+        scePadStopRecordingCaught = (std::string(error.what()) == "scePadStopRecording not implemented");
+    }
+    Require(scePadStopRecordingCaught);
+    bool scePadRemoteControlInsertDataCaught = false;
+    try {
+        scePadRemoteControlInsertData(nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadRemoteControlInsertDataCaught = (std::string(error.what()) == "scePadRemoteControlInsertData not implemented");
+    }
+    Require(scePadRemoteControlInsertDataCaught);
+    bool scePadRemoteControlInsertDataForAstonCaught = false;
+    try {
+        scePadRemoteControlInsertDataForAston(nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadRemoteControlInsertDataForAstonCaught = (std::string(error.what()) == "scePadRemoteControlInsertDataForAston not implemented");
+    }
+    Require(scePadRemoteControlInsertDataForAstonCaught);
+    bool scePadGetFeatureReport2Caught = false;
+    try {
+        scePadGetFeatureReport2(handle, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadGetFeatureReport2Caught = (std::string(error.what()) == "scePadGetFeatureReport2 not implemented");
+    }
+    Require(scePadGetFeatureReport2Caught);
+    bool scePadSetFeatureReport2Caught = false;
+    try {
+        scePadSetFeatureReport2(handle, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetFeatureReport2Caught = (std::string(error.what()) == "scePadSetFeatureReport2 not implemented");
+    }
+    Require(scePadSetFeatureReport2Caught);
+    bool scePadSetMuteLedCaught = false;
+    try {
+        scePadSetMuteLed(handle, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetMuteLedCaught = (std::string(error.what()) == "scePadSetMuteLed not implemented");
+    }
+    Require(scePadSetMuteLedCaught);
     const int handle2 = scePadOpen_nid_postfix(user2, 0, 0, nullptr);
     Require(handle2 == PAD_HANDLE_BASE + 1);
     Require(scePadGetHandle(user2, 0, 0) == handle2);
