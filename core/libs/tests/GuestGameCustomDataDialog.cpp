@@ -2,6 +2,8 @@
 #include "prx/libc/include/general/VabiMacros.hpp"
 #include <cstdint>
 #include <cstdlib>
+#include <stdexcept>
+#include <string>
 
 namespace {
 
@@ -60,4 +62,18 @@ int main() {
     Require(sceGameCustomDataDialogGetResultA(result) == 0);
     Require(result[0] == kResultUserCanceled);
     Require(sceGameCustomDataDialogTerminate() == 0);
+    bool sceGameCustomDataDialogGetResultCaught = false;
+    try {
+        sceGameCustomDataDialogGetResult();
+    } catch (const std::runtime_error& error) {
+        sceGameCustomDataDialogGetResultCaught = (std::string(error.what()) == "sceGameCustomDataDialogGetResult not implemented");
+    }
+    Require(sceGameCustomDataDialogGetResultCaught);
+    bool sceGameCustomDataDialogOpenCaught = false;
+    try {
+        sceGameCustomDataDialogOpen();
+    } catch (const std::runtime_error& error) {
+        sceGameCustomDataDialogOpenCaught = (std::string(error.what()) == "sceGameCustomDataDialogOpen not implemented");
+    }
+    Require(sceGameCustomDataDialogOpenCaught);
 }
