@@ -714,6 +714,146 @@ int main() {
 
     const int user2 = 0x10000001;
     Require(scePadGetHandle(user2, 0, 0) == noHandle);
+    bool scePadSetTriggerEffectStrengthCaught = false;
+    try {
+        scePadSetTriggerEffectStrength(handle, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetTriggerEffectStrengthCaught = (std::string(error.what()) == "scePadSetTriggerEffectStrength not implemented");
+    }
+    Require(scePadSetTriggerEffectStrengthCaught);
+    bool scePadGetTriggerEffectInternalStateCaught = false;
+    try {
+        scePadGetTriggerEffectInternalState(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetTriggerEffectInternalStateCaught = (std::string(error.what()) == "scePadGetTriggerEffectInternalState not implemented");
+    }
+    Require(scePadGetTriggerEffectInternalStateCaught);
+    bool scePadSetUserNumberCaught = false;
+    try {
+        scePadSetUserNumber(handle, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetUserNumberCaught = (std::string(error.what()) == "scePadSetUserNumber not implemented");
+    }
+    Require(scePadSetUserNumberCaught);
+    bool scePadDisableTransportButtonsCaught = false;
+    try {
+        scePadDisableTransportButtons(false);
+    } catch (const std::runtime_error& error) {
+        scePadDisableTransportButtonsCaught = (std::string(error.what()) == "scePadDisableTransportButtons not implemented");
+    }
+    Require(scePadDisableTransportButtonsCaught);
+    bool scePadSetLotusIrCodeSetStartCaught = false;
+    try {
+        scePadSetLotusIrCodeSetStart(handle, 0, 0, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetLotusIrCodeSetStartCaught = (std::string(error.what()) == "scePadSetLotusIrCodeSetStart not implemented");
+    }
+    Require(scePadSetLotusIrCodeSetStartCaught);
+    bool scePadSetLotusIrCodeSetDataCaught = false;
+    try {
+        scePadSetLotusIrCodeSetData(handle, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetLotusIrCodeSetDataCaught = (std::string(error.what()) == "scePadSetLotusIrCodeSetData not implemented");
+    }
+    Require(scePadSetLotusIrCodeSetDataCaught);
+    bool scePadSetLotusIrCodeSetEndCaught = false;
+    try {
+        scePadSetLotusIrCodeSetEnd(handle);
+    } catch (const std::runtime_error& error) {
+        scePadSetLotusIrCodeSetEndCaught = (std::string(error.what()) == "scePadSetLotusIrCodeSetEnd not implemented");
+    }
+    Require(scePadSetLotusIrCodeSetEndCaught);
+    bool scePadGetLotusIrCodeSetResultCaught = false;
+    try {
+        scePadGetLotusIrCodeSetResult(handle, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetLotusIrCodeSetResultCaught = (std::string(error.what()) == "scePadGetLotusIrCodeSetResult not implemented");
+    }
+    Require(scePadGetLotusIrCodeSetResultCaught);
+    bool scePadSetLotusEnableIrKeyCaught = false;
+    try {
+        scePadSetLotusEnableIrKey(handle);
+    } catch (const std::runtime_error& error) {
+        scePadSetLotusEnableIrKeyCaught = (std::string(error.what()) == "scePadSetLotusEnableIrKey not implemented");
+    }
+    Require(scePadSetLotusEnableIrKeyCaught);
+    bool scePadSetLotusDisableIrKeyCaught = false;
+    try {
+        scePadSetLotusDisableIrKey(handle);
+    } catch (const std::runtime_error& error) {
+        scePadSetLotusDisableIrKeyCaught = (std::string(error.what()) == "scePadSetLotusDisableIrKey not implemented");
+    }
+    Require(scePadSetLotusDisableIrKeyCaught);
+    bool scePadGetUsbDetectionStateCaught = false;
+    try {
+        scePadGetUsbDetectionState(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetUsbDetectionStateCaught = (std::string(error.what()) == "scePadGetUsbDetectionState not implemented");
+    }
+    Require(scePadGetUsbDetectionStateCaught);
+    bool scePadUiReadStateCaught = false;
+    try {
+        scePadUiReadState(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadUiReadStateCaught = (std::string(error.what()) == "scePadUiReadState not implemented");
+    }
+    Require(scePadUiReadStateCaught);
+    bool scePadUiReadStateForTuningCaught = false;
+    try {
+        scePadUiReadStateForTuning(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadUiReadStateForTuningCaught = (std::string(error.what()) == "scePadUiReadStateForTuning not implemented");
+    }
+    Require(scePadUiReadStateForTuningCaught);
+    bool scePadSetStickTriggerTuningModeCaught = false;
+    try {
+        scePadSetStickTriggerTuningMode(handle, 0);
+    } catch (const std::runtime_error& error) {
+        scePadSetStickTriggerTuningModeCaught = (std::string(error.what()) == "scePadSetStickTriggerTuningMode not implemented");
+    }
+    Require(scePadSetStickTriggerTuningModeCaught);
+    bool scePadSetStickTuningParamCaught = false;
+    try {
+        scePadSetStickTuningParam(handle, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetStickTuningParamCaught = (std::string(error.what()) == "scePadSetStickTuningParam not implemented");
+    }
+    Require(scePadSetStickTuningParamCaught);
+    bool scePadSetTriggerTuningParamCaught = false;
+    try {
+        scePadSetTriggerTuningParam(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetTriggerTuningParamCaught = (std::string(error.what()) == "scePadSetTriggerTuningParam not implemented");
+    }
+    Require(scePadSetTriggerTuningParamCaught);
+    bool scePadGetProfileHuntCaught = false;
+    try {
+        scePadGetProfileHunt(handle, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetProfileHuntCaught = (std::string(error.what()) == "scePadGetProfileHunt not implemented");
+    }
+    Require(scePadGetProfileHuntCaught);
+    bool scePadSetProfileHuntCaught = false;
+    try {
+        scePadSetProfileHunt(handle, 0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetProfileHuntCaught = (std::string(error.what()) == "scePadSetProfileHunt not implemented");
+    }
+    Require(scePadSetProfileHuntCaught);
+    bool scePadResetHuntCaught = false;
+    try {
+        scePadResetHunt(handle);
+    } catch (const std::runtime_error& error) {
+        scePadResetHuntCaught = (std::string(error.what()) == "scePadResetHunt not implemented");
+    }
+    Require(scePadResetHuntCaught);
+    bool scePadGetProfileInfoCaught = false;
+    try {
+        scePadGetProfileInfo(0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetProfileInfoCaught = (std::string(error.what()) == "scePadGetProfileInfo not implemented");
+    }
+    Require(scePadGetProfileInfoCaught);
     const int handle2 = scePadOpen_nid_postfix(user2, 0, 0, nullptr);
     Require(handle2 == PAD_HANDLE_BASE + 1);
     Require(scePadGetHandle(user2, 0, 0) == handle2);
