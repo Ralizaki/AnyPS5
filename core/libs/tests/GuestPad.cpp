@@ -10,6 +10,7 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <utility>
@@ -701,6 +702,43 @@ int main() {
     Require(scePadGetHandle(user, 0, 0) == noHandle);
     Require(scePadUnknown_n3kSX62fgNo() == PAD_OK);
     Require(scePadSetVibrationTriggerEffectWeakWhileEmbeddedMicInUse(true) == 0);
+    Require(scePadEnableExtensionPort(true) == 0);
+    Require(scePadEnableExtensionPort(false) == 0);
+    bool specificDeviceClassCaught = false;
+    try {
+        scePadEnableSpecificDeviceClass(0);
+    } catch (const std::runtime_error& error) {
+        specificDeviceClassCaught = (std::string(error.what()) == "scePadEnableSpecificDeviceClass not implemented");
+    }
+    Require(specificDeviceClassCaught);
+    bool usbConnectionCaught = false;
+    try {
+        scePadEnableUsbConnection(false);
+    } catch (const std::runtime_error& error) {
+        usbConnectionCaught = (std::string(error.what()) == "scePadEnableUsbConnection not implemented");
+    }
+    Require(usbConnectionCaught);
+    bool autoDetectCaught = false;
+    try {
+        scePadEnableAutoDetect(false);
+    } catch (const std::runtime_error& error) {
+        autoDetectCaught = (std::string(error.what()) == "scePadEnableAutoDetect not implemented");
+    }
+    Require(autoDetectCaught);
+    bool playPauseCaught = false;
+    try {
+        scePadEnablePlayPauseEmulation(false);
+    } catch (const std::runtime_error& error) {
+        playPauseCaught = (std::string(error.what()) == "scePadEnablePlayPauseEmulation not implemented");
+    }
+    Require(playPauseCaught);
+    bool trackingLedCaught = false;
+    try {
+        scePadDisableTrackingLedBatterySaver(false);
+    } catch (const std::runtime_error& error) {
+        trackingLedCaught = (std::string(error.what()) == "scePadDisableTrackingLedBatterySaver not implemented");
+    }
+    Require(trackingLedCaught);
     Require(scePadSetAngularVelocityDeadbandState(handle, false) == 0);
     Require(scePadSetAngularVelocityDeadbandState(handle + 1, false) == PAD_ERROR_INVALID_HANDLE);
     Require(scePadSetAngularVelocityDeadbandState(handle + 1, true) == PAD_ERROR_INVALID_HANDLE);
