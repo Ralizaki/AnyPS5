@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
+#include <string>
 #include <source_location>
 #include "prx/libSceNet/libSceNet.hpp"
 
@@ -68,4 +70,179 @@ int main() {
         CheckProtocol(client, 6);
         for (const int socket : {accepted, client, listener}) Require(sceNetSocketClose(socket) == 0);
     }
+    bool sceNetDhcpGetInfoExCaught = false;
+    try {
+        sceNetDhcpGetInfoEx(0, 0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetDhcpGetInfoExCaught = (std::string(error.what()) == "sceNetDhcpGetInfoEx not implemented");
+    }
+    Require(sceNetDhcpGetInfoExCaught);
+    bool sceNetDhcpStartCaught = false;
+    try {
+        sceNetDhcpStart(0, nullptr, nullptr, 0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetDhcpStartCaught = (std::string(error.what()) == "sceNetDhcpStart not implemented");
+    }
+    Require(sceNetDhcpStartCaught);
+    bool sceNetDhcpStopCaught = false;
+    try {
+        sceNetDhcpStop(0);
+    } catch (const std::runtime_error& error) {
+        sceNetDhcpStopCaught = (std::string(error.what()) == "sceNetDhcpStop not implemented");
+    }
+    Require(sceNetDhcpStopCaught);
+    bool sceNetConfigAddIfaddr6Caught = false;
+    try {
+        sceNetConfigAddIfaddr6(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddIfaddr6Caught = (std::string(error.what()) == "sceNetConfigAddIfaddr6 not implemented");
+    }
+    Require(sceNetConfigAddIfaddr6Caught);
+    bool sceNetConfigDelIfaddr6Caught = false;
+    try {
+        sceNetConfigDelIfaddr6(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelIfaddr6Caught = (std::string(error.what()) == "sceNetConfigDelIfaddr6 not implemented");
+    }
+    Require(sceNetConfigDelIfaddr6Caught);
+    bool sceNetConfigDelDefaultRoute6Caught = false;
+    try {
+        sceNetConfigDelDefaultRoute6();
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelDefaultRoute6Caught = (std::string(error.what()) == "sceNetConfigDelDefaultRoute6 not implemented");
+    }
+    Require(sceNetConfigDelDefaultRoute6Caught);
+    bool sceNetConfigSetIfaddr6Caught = false;
+    try {
+        sceNetConfigSetIfaddr6(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetIfaddr6Caught = (std::string(error.what()) == "sceNetConfigSetIfaddr6 not implemented");
+    }
+    Require(sceNetConfigSetIfaddr6Caught);
+    bool sceNetConfigSetIfaddr6WithFlagsCaught = false;
+    try {
+        sceNetConfigSetIfaddr6WithFlags(0, nullptr, 0, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetIfaddr6WithFlagsCaught = (std::string(error.what()) == "sceNetConfigSetIfaddr6WithFlags not implemented");
+    }
+    Require(sceNetConfigSetIfaddr6WithFlagsCaught);
+    bool sceNetConfigSetDefaultRoute6Caught = false;
+    try {
+        sceNetConfigSetDefaultRoute6(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetDefaultRoute6Caught = (std::string(error.what()) == "sceNetConfigSetDefaultRoute6 not implemented");
+    }
+    Require(sceNetConfigSetDefaultRoute6Caught);
+    bool sceNetConfigGetIfaddr6Caught = false;
+    try {
+        sceNetConfigGetIfaddr6(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigGetIfaddr6Caught = (std::string(error.what()) == "sceNetConfigGetIfaddr6 not implemented");
+    }
+    Require(sceNetConfigGetIfaddr6Caught);
+    bool sceNetConfigGetDefaultRoute6Caught = false;
+    try {
+        sceNetConfigGetDefaultRoute6(nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigGetDefaultRoute6Caught = (std::string(error.what()) == "sceNetConfigGetDefaultRoute6 not implemented");
+    }
+    Require(sceNetConfigGetDefaultRoute6Caught);
+    bool sceNetConfigDelRoute6Caught = false;
+    try {
+        sceNetConfigDelRoute6(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelRoute6Caught = (std::string(error.what()) == "sceNetConfigDelRoute6 not implemented");
+    }
+    Require(sceNetConfigDelRoute6Caught);
+    bool sceNetConfigAddRoute6Caught = false;
+    try {
+        sceNetConfigAddRoute6(nullptr, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddRoute6Caught = (std::string(error.what()) == "sceNetConfigAddRoute6 not implemented");
+    }
+    Require(sceNetConfigAddRoute6Caught);
+    bool sceNetAddrConfig6StartCaught = false;
+    try {
+        sceNetAddrConfig6Start(0, nullptr, nullptr, 0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetAddrConfig6StartCaught = (std::string(error.what()) == "sceNetAddrConfig6Start not implemented");
+    }
+    Require(sceNetAddrConfig6StartCaught);
+    bool sceNetAddrConfig6StopCaught = false;
+    try {
+        sceNetAddrConfig6Stop(0);
+    } catch (const std::runtime_error& error) {
+        sceNetAddrConfig6StopCaught = (std::string(error.what()) == "sceNetAddrConfig6Stop not implemented");
+    }
+    Require(sceNetAddrConfig6StopCaught);
+    bool sceNetAddrConfig6GetInfoCaught = false;
+    try {
+        sceNetAddrConfig6GetInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetAddrConfig6GetInfoCaught = (std::string(error.what()) == "sceNetAddrConfig6GetInfo not implemented");
+    }
+    Require(sceNetAddrConfig6GetInfoCaught);
+    bool sceNetInfoDumpStartCaught = false;
+    try {
+        sceNetInfoDumpStart(0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetInfoDumpStartCaught = (std::string(error.what()) == "sceNetInfoDumpStart not implemented");
+    }
+    Require(sceNetInfoDumpStartCaught);
+    bool sceNetInfoDumpStopCaught = false;
+    try {
+        sceNetInfoDumpStop();
+    } catch (const std::runtime_error& error) {
+        sceNetInfoDumpStopCaught = (std::string(error.what()) == "sceNetInfoDumpStop not implemented");
+    }
+    Require(sceNetInfoDumpStopCaught);
+    bool sceNetDhcpdStartCaught = false;
+    try {
+        sceNetDhcpdStart(0, nullptr, nullptr, 0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetDhcpdStartCaught = (std::string(error.what()) == "sceNetDhcpdStart not implemented");
+    }
+    Require(sceNetDhcpdStartCaught);
+    bool sceNetDhcpdStopCaught = false;
+    try {
+        sceNetDhcpdStop(0);
+    } catch (const std::runtime_error& error) {
+        sceNetDhcpdStopCaught = (std::string(error.what()) == "sceNetDhcpdStop not implemented");
+    }
+    Require(sceNetDhcpdStopCaught);
+    bool sceNetDuplicateIpStartCaught = false;
+    try {
+        sceNetDuplicateIpStart(0, nullptr, nullptr, 0, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetDuplicateIpStartCaught = (std::string(error.what()) == "sceNetDuplicateIpStart not implemented");
+    }
+    Require(sceNetDuplicateIpStartCaught);
+    bool sceNetDuplicateIpStopCaught = false;
+    try {
+        sceNetDuplicateIpStop(0);
+    } catch (const std::runtime_error& error) {
+        sceNetDuplicateIpStopCaught = (std::string(error.what()) == "sceNetDuplicateIpStop not implemented");
+    }
+    Require(sceNetDuplicateIpStopCaught);
+    bool sceNetConfigWlanAdhocClearWakeOnWlanCaught = false;
+    try {
+        sceNetConfigWlanAdhocClearWakeOnWlan(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocClearWakeOnWlanCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocClearWakeOnWlan not implemented");
+    }
+    Require(sceNetConfigWlanAdhocClearWakeOnWlanCaught);
+    bool sceNetConfigWlanAdhocCreateCaught = false;
+    try {
+        sceNetConfigWlanAdhocCreate(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocCreateCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocCreate not implemented");
+    }
+    Require(sceNetConfigWlanAdhocCreateCaught);
+    bool sceNetConfigWlanAdhocGetWakeOnWlanInfoCaught = false;
+    try {
+        sceNetConfigWlanAdhocGetWakeOnWlanInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigWlanAdhocGetWakeOnWlanInfoCaught = (std::string(error.what()) == "sceNetConfigWlanAdhocGetWakeOnWlanInfo not implemented");
+    }
+    Require(sceNetConfigWlanAdhocGetWakeOnWlanInfoCaught);
 }
