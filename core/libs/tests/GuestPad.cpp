@@ -10,6 +10,7 @@
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <utility>
@@ -714,6 +715,182 @@ int main() {
 
     const int user2 = 0x10000001;
     Require(scePadGetHandle(user2, 0, 0) == noHandle);
+
+    bool scePadGetActiveTimeCaught = false;
+    try {
+        scePadGetActiveTime(handle, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetActiveTimeCaught = (std::string(error.what()) == "scePadGetActiveTime not implemented");
+    }
+    Require(scePadGetActiveTimeCaught);
+    bool scePadGetDeviceIdCaught = false;
+    try {
+        scePadGetDeviceId(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetDeviceIdCaught = (std::string(error.what()) == "scePadGetDeviceId not implemented");
+    }
+    Require(scePadGetDeviceIdCaught);
+    bool scePadGetInfoByPortTypeCaught = false;
+    try {
+        scePadGetInfoByPortType(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetInfoByPortTypeCaught = (std::string(error.what()) == "scePadGetInfoByPortType not implemented");
+    }
+    Require(scePadGetInfoByPortTypeCaught);
+    bool scePadResetLightBarAllCaught = false;
+    try {
+        scePadResetLightBarAll();
+    } catch (const std::runtime_error& error) {
+        scePadResetLightBarAllCaught = (std::string(error.what()) == "scePadResetLightBarAll not implemented");
+    }
+    Require(scePadResetLightBarAllCaught);
+    bool scePadResetLightBarAllByPortTypeCaught = false;
+    try {
+        scePadResetLightBarAllByPortType(0);
+    } catch (const std::runtime_error& error) {
+        scePadResetLightBarAllByPortTypeCaught = (std::string(error.what()) == "scePadResetLightBarAllByPortType not implemented");
+    }
+    Require(scePadResetLightBarAllByPortTypeCaught);
+    bool scePadSetLightBarForTrackerCaught = false;
+    try {
+        scePadSetLightBarForTracker(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetLightBarForTrackerCaught = (std::string(error.what()) == "scePadSetLightBarForTracker not implemented");
+    }
+    Require(scePadSetLightBarForTrackerCaught);
+    bool scePadReadForTrackerCaught = false;
+    try {
+        scePadReadForTracker(handle, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadReadForTrackerCaught = (std::string(error.what()) == "scePadReadForTracker not implemented");
+    }
+    Require(scePadReadForTrackerCaught);
+    bool scePadReadBlasterForTrackerCaught = false;
+    try {
+        scePadReadBlasterForTracker(handle, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadReadBlasterForTrackerCaught = (std::string(error.what()) == "scePadReadBlasterForTracker not implemented");
+    }
+    Require(scePadReadBlasterForTrackerCaught);
+    bool scePadResetOrientationForTrackerCaught = false;
+    try {
+        scePadResetOrientationForTracker(handle);
+    } catch (const std::runtime_error& error) {
+        scePadResetOrientationForTrackerCaught = (std::string(error.what()) == "scePadResetOrientationForTracker not implemented");
+    }
+    Require(scePadResetOrientationForTrackerCaught);
+    bool scePadGetMotionTimerUnitCaught = false;
+    try {
+        scePadGetMotionTimerUnit(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetMotionTimerUnitCaught = (std::string(error.what()) == "scePadGetMotionTimerUnit not implemented");
+    }
+    Require(scePadGetMotionTimerUnitCaught);
+    bool scePadSetVrTrackingModeCaught = false;
+    try {
+        scePadSetVrTrackingMode(0);
+    } catch (const std::runtime_error& error) {
+        scePadSetVrTrackingModeCaught = (std::string(error.what()) == "scePadSetVrTrackingMode not implemented");
+    }
+    Require(scePadSetVrTrackingModeCaught);
+    bool scePadGetMotionSensorPositionCaught = false;
+    try {
+        scePadGetMotionSensorPosition(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetMotionSensorPositionCaught = (std::string(error.what()) == "scePadGetMotionSensorPosition not implemented");
+    }
+    Require(scePadGetMotionSensorPositionCaught);
+    bool scePadGetSphereRadiusCaught = false;
+    try {
+        scePadGetSphereRadius(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetSphereRadiusCaught = (std::string(error.what()) == "scePadGetSphereRadius not implemented");
+    }
+    Require(scePadGetSphereRadiusCaught);
+    bool scePadIsValidHandleCaught = false;
+    try {
+        scePadIsValidHandle(handle, 0);
+    } catch (const std::runtime_error& error) {
+        scePadIsValidHandleCaught = (std::string(error.what()) == "scePadIsValidHandle not implemented");
+    }
+    Require(scePadIsValidHandleCaught);
+    bool scePadGetBluetoothAddressCaught = false;
+    try {
+        scePadGetBluetoothAddress(handle, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetBluetoothAddressCaught = (std::string(error.what()) == "scePadGetBluetoothAddress not implemented");
+    }
+    Require(scePadGetBluetoothAddressCaught);
+    bool scePadIsMoveReproductionModelCaught = false;
+    try {
+        scePadIsMoveReproductionModel(handle);
+    } catch (const std::runtime_error& error) {
+        scePadIsMoveReproductionModelCaught = (std::string(error.what()) == "scePadIsMoveReproductionModel not implemented");
+    }
+    Require(scePadIsMoveReproductionModelCaught);
+    bool scePadReadAstonForTrackerCaught = false;
+    try {
+        scePadReadAstonForTracker(handle, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        scePadReadAstonForTrackerCaught = (std::string(error.what()) == "scePadReadAstonForTracker not implemented");
+    }
+    Require(scePadReadAstonForTrackerCaught);
+    bool scePadGetAstonModelCaught = false;
+    try {
+        scePadGetAstonModel(handle);
+    } catch (const std::runtime_error& error) {
+        scePadGetAstonModelCaught = (std::string(error.what()) == "scePadGetAstonModel not implemented");
+    }
+    Require(scePadGetAstonModelCaught);
+    bool scePadMbusInitCaught = false;
+    try {
+        scePadMbusInit();
+    } catch (const std::runtime_error& error) {
+        scePadMbusInitCaught = (std::string(error.what()) == "scePadMbusInit not implemented");
+    }
+    Require(scePadMbusInitCaught);
+    bool scePadMbusTermCaught = false;
+    try {
+        scePadMbusTerm();
+    } catch (const std::runtime_error& error) {
+        scePadMbusTermCaught = (std::string(error.what()) == "scePadMbusTerm not implemented");
+    }
+    Require(scePadMbusTermCaught);
+    bool scePadConnectPortCaught = false;
+    try {
+        scePadConnectPort(0, 0);
+    } catch (const std::runtime_error& error) {
+        scePadConnectPortCaught = (std::string(error.what()) == "scePadConnectPort not implemented");
+    }
+    Require(scePadConnectPortCaught);
+    bool scePadDisconnectPortCaught = false;
+    try {
+        scePadDisconnectPort(0, 0);
+    } catch (const std::runtime_error& error) {
+        scePadDisconnectPortCaught = (std::string(error.what()) == "scePadDisconnectPort not implemented");
+    }
+    Require(scePadDisconnectPortCaught);
+    bool scePadDisconnectDeviceCaught = false;
+    try {
+        scePadDisconnectDevice(0);
+    } catch (const std::runtime_error& error) {
+        scePadDisconnectDeviceCaught = (std::string(error.what()) == "scePadDisconnectDevice not implemented");
+    }
+    Require(scePadDisconnectDeviceCaught);
+    bool scePadGetDeviceInfoCaught = false;
+    try {
+        scePadGetDeviceInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadGetDeviceInfoCaught = (std::string(error.what()) == "scePadGetDeviceInfo not implemented");
+    }
+    Require(scePadGetDeviceInfoCaught);
+    bool scePadSetProcessFocusCaught = false;
+    try {
+        scePadSetProcessFocus(nullptr);
+    } catch (const std::runtime_error& error) {
+        scePadSetProcessFocusCaught = (std::string(error.what()) == "scePadSetProcessFocus not implemented");
+    }
+    Require(scePadSetProcessFocusCaught);
     const int handle2 = scePadOpen_nid_postfix(user2, 0, 0, nullptr);
     Require(handle2 == PAD_HANDLE_BASE + 1);
     Require(scePadGetHandle(user2, 0, 0) == handle2);
