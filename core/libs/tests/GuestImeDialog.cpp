@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
 #include <string>
 
 namespace {
@@ -203,4 +204,11 @@ int main() {
     Require(sceImeDialogAbort() == 0);
     Require(sceImeDialogSetPanelPosition(0, 0) == ErrorSuspending);
     Close();
+    bool sceImeDialogInitInternalWithSubInfoCaught = false;
+    try {
+        sceImeDialogInitInternalWithSubInfo();
+    } catch (const std::runtime_error& error) {
+        sceImeDialogInitInternalWithSubInfoCaught = (std::string(error.what()) == "sceImeDialogInitInternalWithSubInfo not implemented");
+    }
+    Require(sceImeDialogInitInternalWithSubInfoCaught);
 }
