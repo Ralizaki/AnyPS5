@@ -9,6 +9,7 @@
 #include <cstring>
 #include <optional>
 #include <stdexcept>
+#include <string>
 #include <algorithm>
 #include <vector>
 
@@ -295,5 +296,12 @@ int main() {
     Require(sceJpegDecDecode(handle, &garbageScaled, &info) == invalidData);
 
     Require(sceJpegDecDelete(handle) == 0);
+    bool sceJpegDecDecodeWithInputControlCaught = false;
+    try {
+        sceJpegDecDecodeWithInputControl();
+    } catch (const std::runtime_error& error) {
+        sceJpegDecDecodeWithInputControlCaught = (std::string(error.what()) == "sceJpegDecDecodeWithInputControl not implemented");
+    }
+    Require(sceJpegDecDecodeWithInputControlCaught);
     return 0;
 }
