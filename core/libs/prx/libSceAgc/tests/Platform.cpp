@@ -35,9 +35,11 @@ void testRejections() {
     expectFailure([] { sceAgcGetIsTrinityMode(nullptr); });
 }
 
-void testExportLinked() {
-    auto* volatile linked = &sceAgcSuspendPointAndCheckStatus;
-    check(linked != nullptr, "sceAgcSuspendPointAndCheckStatus is not linked");
+void testUnimplemented() {
+    expectFailure([] { sceAgcSuspendPointAndCheckStatus(); });
+    expectFailure([] { sceAgcAcquireMemSetEngine(nullptr, 0); });
+    expectFailure([] { sceAgcCbMemsetExclusive(nullptr, nullptr, nullptr, 0); });
+    expectFailure([] { sceAgcAcbInitializeDefaultHardwareState(); });
 }
 
 }
@@ -46,7 +48,7 @@ int main() {
     try {
         testTrinityMode();
         testRejections();
-        testExportLinked();
+        testUnimplemented();
         LibcRunShutdown_nid_postfix();
         std::puts("AGC platform tests passed");
         return 0;
