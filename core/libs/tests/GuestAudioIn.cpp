@@ -197,11 +197,43 @@ void TestNoDevice() {
     Require(sceAudioInOpen(user, 1, 0, 128, 48000, 0x11) == handle);
 }
 
+void TestUnimplemented() {
+    Require(ReportsNotImplemented("sceAudioInDeviceIdOpen", [] { sceAudioInDeviceIdOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceIdAsyncOpen", [] { sceAudioInDeviceIdAsyncOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInSetUsbGain", [] { sceAudioInSetUsbGain(); }));
+    Require(ReportsNotImplemented("sceAudioInIsSharedDevice", [] { sceAudioInIsSharedDevice(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceIdHqOpen", [] { sceAudioInDeviceIdHqOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceHqOpen", [] { sceAudioInDeviceHqOpen(); }));
+    Require(ReportsNotImplemented("sceAudioInSetConnections", [] { sceAudioInSetConnections(); }));
+    Require(ReportsNotImplemented("sceAudioInSetPortConnections", [] { sceAudioInSetPortConnections(); }));
+    Require(ReportsNotImplemented("sceAudioInSetPortStatuses", [] { sceAudioInSetPortStatuses(); }));
+    Require(ReportsNotImplemented("sceAudioInGetHandleStatusInfo", [] { sceAudioInGetHandleStatusInfo(); }));
+    Require(ReportsNotImplemented("sceAudioInDeviceOpenEx", [] { sceAudioInDeviceOpenEx(); }));
+    Require(ReportsNotImplemented("sceAudioInChangeAppModuleState", [] { sceAudioInChangeAppModuleState(); }));
+    Require(ReportsNotImplemented("sceAudioInSetSparkParam", [] { sceAudioInSetSparkParam(); }));
+    Require(ReportsNotImplemented("sceAudioInSetSparkSideTone", [] { sceAudioInSetSparkSideTone(); }));
+    Require(ReportsNotImplemented("sceAudioInSetMicLevel", [] { sceAudioInSetMicLevel(); }));
+    Require(ReportsNotImplemented("sceAudioInSetDeviceMuteStatus", [] { sceAudioInSetDeviceMuteStatus(); }));
+    Require(ReportsNotImplemented("sceAudioInSetDevConnection", [] { sceAudioInSetDevConnection(); }));
+    Require(ReportsNotImplemented("sceAudioInCountPorts", [] { sceAudioInCountPorts(); }));
+    Require(ReportsNotImplemented("sceAudioInSetUserMute", [] { sceAudioInSetUserMute(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicCreate", [] { sceAudioInVmicCreate(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicDestroy", [] { sceAudioInVmicDestroy(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicWrite", [] { sceAudioInVmicWrite(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicGetStatus", [] { sceAudioInVmicGetStatus(); }));
+    Require(ReportsNotImplemented("sceAudioInVmicSetMute", [] { sceAudioInVmicSetMute(); }));
+    Require(ReportsNotImplemented("sceAudioInSetMode", [] { sceAudioInSetMode(); }));
+    Require(ReportsNotImplemented("sceAudioInSetMode2", [] { sceAudioInSetMode2(); }));
+    Require(ReportsNotImplemented("sceAudioInExtCtrl", [] { sceAudioInExtCtrl(); }));
+    Require(ReportsNotImplemented("sceAudioInInputs", [] { sceAudioInInputs(); }));
+}
+
 }
 
 int main(int argc, char** argv) {
     Require(argc == 2);
     Require(sceAudioInInit() == 0);
+    TestUnimplemented();
     if (std::strcmp(argv[1], "capture") == 0) TestCapture();
     else TestNoDevice();
 }
