@@ -213,4 +213,7 @@ int main() {
     Require(narrow.front() == 12345 && narrow.back() == 12345);
     Require(sceOpusDecDestroy(narrowState.data()) == 0);
     Require(sceOpusDecTerminate(&narrowContext) == 0);
+    RequireThrows([&] { sceOpusDecCancel(); });
+    RequireThrows([&] { sceOpusDecCreate(); });
+    RequireThrows([&] { sceOpusDecCtl(); });
 }
