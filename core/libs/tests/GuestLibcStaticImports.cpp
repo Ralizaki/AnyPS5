@@ -146,11 +146,18 @@ void TestThrdSleep() {
     });
 }
 
+void TestAtomicAssert() {
+    RequireThrows<std::runtime_error>([] {
+        _ZSt14_Atomic_assertPKcS0__nid_postfix();
+    });
+}
+
 }
 
 int main() {
     TestNearbyintf();
     TestMtxTrylock();
     TestThrdSleep();
+    TestAtomicAssert();
     return 0;
 }
