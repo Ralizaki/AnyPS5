@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
+#include <string>
 #include <source_location>
 #include "prx/libSceNet/libSceNet.hpp"
 
@@ -68,4 +70,179 @@ int main() {
         CheckProtocol(client, 6);
         for (const int socket : {accepted, client, listener}) Require(sceNetSocketClose(socket) == 0);
     }
+    bool sceNetConfigSetDefaultRouteDevCaught = false;
+    try {
+        sceNetConfigSetDefaultRouteDev(nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetDefaultRouteDevCaught = (std::string(error.what()) == "sceNetConfigSetDefaultRouteDev not implemented");
+    }
+    Require(sceNetConfigSetDefaultRouteDevCaught);
+    bool sceNetConfigSetIfaddrCaught = false;
+    try {
+        sceNetConfigSetIfaddr(0, nullptr, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetIfaddrCaught = (std::string(error.what()) == "sceNetConfigSetIfaddr not implemented");
+    }
+    Require(sceNetConfigSetIfaddrCaught);
+    bool sceNetConfigSetIfLinkLocalAddr6Caught = false;
+    try {
+        sceNetConfigSetIfLinkLocalAddr6(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetIfLinkLocalAddr6Caught = (std::string(error.what()) == "sceNetConfigSetIfLinkLocalAddr6 not implemented");
+    }
+    Require(sceNetConfigSetIfLinkLocalAddr6Caught);
+    bool sceNetConfigUpInterfaceCaught = false;
+    try {
+        sceNetConfigUpInterface(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigUpInterfaceCaught = (std::string(error.what()) == "sceNetConfigUpInterface not implemented");
+    }
+    Require(sceNetConfigUpInterfaceCaught);
+    bool sceNetConfigUpInterfaceWithFlagsCaught = false;
+    try {
+        sceNetConfigUpInterfaceWithFlags(0, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigUpInterfaceWithFlagsCaught = (std::string(error.what()) == "sceNetConfigUpInterfaceWithFlags not implemented");
+    }
+    Require(sceNetConfigUpInterfaceWithFlagsCaught);
+    bool sceNetConfigCleanUpAllInterfacesCaught = false;
+    try {
+        sceNetConfigCleanUpAllInterfaces();
+    } catch (const std::runtime_error& error) {
+        sceNetConfigCleanUpAllInterfacesCaught = (std::string(error.what()) == "sceNetConfigCleanUpAllInterfaces not implemented");
+    }
+    Require(sceNetConfigCleanUpAllInterfacesCaught);
+    bool sceNetConfigFlushRouteCaught = false;
+    try {
+        sceNetConfigFlushRoute(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigFlushRouteCaught = (std::string(error.what()) == "sceNetConfigFlushRoute not implemented");
+    }
+    Require(sceNetConfigFlushRouteCaught);
+    bool sceNetConfigFlushRoute6Caught = false;
+    try {
+        sceNetConfigFlushRoute6(0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigFlushRoute6Caught = (std::string(error.what()) == "sceNetConfigFlushRoute6 not implemented");
+    }
+    Require(sceNetConfigFlushRoute6Caught);
+    bool sceNetConfigAddIfaddrCaught = false;
+    try {
+        sceNetConfigAddIfaddr(0, nullptr, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddIfaddrCaught = (std::string(error.what()) == "sceNetConfigAddIfaddr not implemented");
+    }
+    Require(sceNetConfigAddIfaddrCaught);
+    bool sceNetConfigGetIfaddrCaught = false;
+    try {
+        sceNetConfigGetIfaddr(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigGetIfaddrCaught = (std::string(error.what()) == "sceNetConfigGetIfaddr not implemented");
+    }
+    Require(sceNetConfigGetIfaddrCaught);
+    bool sceNetConfigSetIfmtuCaught = false;
+    try {
+        sceNetConfigSetIfmtu(0, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetIfmtuCaught = (std::string(error.what()) == "sceNetConfigSetIfmtu not implemented");
+    }
+    Require(sceNetConfigSetIfmtuCaught);
+    bool sceNetConfigAddArpCaught = false;
+    try {
+        sceNetConfigAddArp(nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddArpCaught = (std::string(error.what()) == "sceNetConfigAddArp not implemented");
+    }
+    Require(sceNetConfigAddArpCaught);
+    bool sceNetConfigAddArpWithInterfaceCaught = false;
+    try {
+        sceNetConfigAddArpWithInterface(0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddArpWithInterfaceCaught = (std::string(error.what()) == "sceNetConfigAddArpWithInterface not implemented");
+    }
+    Require(sceNetConfigAddArpWithInterfaceCaught);
+    bool sceNetConfigAddMRouteCaught = false;
+    try {
+        sceNetConfigAddMRoute(nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddMRouteCaught = (std::string(error.what()) == "sceNetConfigAddMRoute not implemented");
+    }
+    Require(sceNetConfigAddMRouteCaught);
+    bool sceNetConfigAddRouteCaught = false;
+    try {
+        sceNetConfigAddRoute(nullptr, nullptr, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddRouteCaught = (std::string(error.what()) == "sceNetConfigAddRoute not implemented");
+    }
+    Require(sceNetConfigAddRouteCaught);
+    bool sceNetConfigAddRouteWithInterfaceCaught = false;
+    try {
+        sceNetConfigAddRouteWithInterface(0, nullptr, nullptr, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigAddRouteWithInterfaceCaught = (std::string(error.what()) == "sceNetConfigAddRouteWithInterface not implemented");
+    }
+    Require(sceNetConfigAddRouteWithInterfaceCaught);
+    bool sceNetConfigDelArpCaught = false;
+    try {
+        sceNetConfigDelArp(nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelArpCaught = (std::string(error.what()) == "sceNetConfigDelArp not implemented");
+    }
+    Require(sceNetConfigDelArpCaught);
+    bool sceNetConfigDelArpWithInterfaceCaught = false;
+    try {
+        sceNetConfigDelArpWithInterface(0, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelArpWithInterfaceCaught = (std::string(error.what()) == "sceNetConfigDelArpWithInterface not implemented");
+    }
+    Require(sceNetConfigDelArpWithInterfaceCaught);
+    bool sceNetConfigDelDefaultRouteCaught = false;
+    try {
+        sceNetConfigDelDefaultRoute();
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelDefaultRouteCaught = (std::string(error.what()) == "sceNetConfigDelDefaultRoute not implemented");
+    }
+    Require(sceNetConfigDelDefaultRouteCaught);
+    bool sceNetConfigDelDefaultRouteDevCaught = false;
+    try {
+        sceNetConfigDelDefaultRouteDev();
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelDefaultRouteDevCaught = (std::string(error.what()) == "sceNetConfigDelDefaultRouteDev not implemented");
+    }
+    Require(sceNetConfigDelDefaultRouteDevCaught);
+    bool sceNetConfigDelMRouteCaught = false;
+    try {
+        sceNetConfigDelMRoute(nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelMRouteCaught = (std::string(error.what()) == "sceNetConfigDelMRoute not implemented");
+    }
+    Require(sceNetConfigDelMRouteCaught);
+    bool sceNetConfigDelRouteCaught = false;
+    try {
+        sceNetConfigDelRoute(nullptr, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigDelRouteCaught = (std::string(error.what()) == "sceNetConfigDelRoute not implemented");
+    }
+    Require(sceNetConfigDelRouteCaught);
+    bool sceNetConfigGetDefaultRouteCaught = false;
+    try {
+        sceNetConfigGetDefaultRoute(nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigGetDefaultRouteCaught = (std::string(error.what()) == "sceNetConfigGetDefaultRoute not implemented");
+    }
+    Require(sceNetConfigGetDefaultRouteCaught);
+    bool sceNetDhcpGetAutoipInfoCaught = false;
+    try {
+        sceNetDhcpGetAutoipInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetDhcpGetAutoipInfoCaught = (std::string(error.what()) == "sceNetDhcpGetAutoipInfo not implemented");
+    }
+    Require(sceNetDhcpGetAutoipInfoCaught);
+    bool sceNetDhcpGetInfoCaught = false;
+    try {
+        sceNetDhcpGetInfo(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetDhcpGetInfoCaught = (std::string(error.what()) == "sceNetDhcpGetInfo not implemented");
+    }
+    Require(sceNetDhcpGetInfoCaught);
 }
