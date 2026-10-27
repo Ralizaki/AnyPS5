@@ -33,5 +33,17 @@ int main() {
     Require(ReportsNotImplemented("sceAudioOutExPtClose", [] { return sceAudioOutExPtClose(); }), "sceAudioOutExPtClose reports not implemented");
     Require(ReportsNotImplemented("sceAudioOutExPtGetLastOutputTime", [] { return sceAudioOutExPtGetLastOutputTime(); }), "sceAudioOutExPtGetLastOutputTime reports not implemented");
     Require(ReportsNotImplemented("sceAudioOutExGetLastOutputTime", [] { return sceAudioOutExGetLastOutputTime(); }), "sceAudioOutExGetLastOutputTime reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetPadSpkVolume", [] { return sceAudioOutSetPadSpkVolume(); }), "sceAudioOutSetPadSpkVolume reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetPadJackVolume", [] { return sceAudioOutSetPadJackVolume(); }), "sceAudioOutSetPadJackVolume reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetUsbVolume", [] { return sceAudioOutSetUsbVolume(); }), "sceAudioOutSetUsbVolume reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetCaesarVolume", [] { return sceAudioOutSetCaesarVolume(); }), "sceAudioOutSetCaesarVolume reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetHeadphoneOutMode", [] { return sceAudioOutSetHeadphoneOutMode(); }), "sceAudioOutSetHeadphoneOutMode reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutGetFocusEnablePid", [] { return sceAudioOutGetFocusEnablePid(); }), "sceAudioOutGetFocusEnablePid reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetVolumeDown", [] { return sceAudioOutSetVolumeDown(); }), "sceAudioOutSetVolumeDown reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetChatBalance", [] { return sceAudioOutSetChatBalance(); }), "sceAudioOutSetChatBalance reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetRecMode", [] { return sceAudioOutSetRecMode(); }), "sceAudioOutSetRecMode reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetAllMute", [] { return sceAudioOutSetAllMute(); }), "sceAudioOutSetAllMute reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutSetSparkEQ", [] { return sceAudioOutSetSparkEQ(); }), "sceAudioOutSetSparkEQ reports not implemented");
+    Require(ReportsNotImplemented("sceAudioOutArbitrationInitialize", [] { return sceAudioOutArbitrationInitialize(); }), "sceAudioOutArbitrationInitialize reports not implemented");
     std::puts("audio out info calls: PASS");
 }
