@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
+#include <string>
 #include <source_location>
 #include "prx/libSceNet/libSceNet.hpp"
 
@@ -68,4 +70,131 @@ int main() {
         CheckProtocol(client, 6);
         for (const int socket : {accepted, client, listener}) Require(sceNetSocketClose(socket) == 0);
     }
+
+    bool sceNetPppoeStartCaught = false;
+    try {
+        sceNetPppoeStart(0, 0, nullptr, nullptr, 0, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetPppoeStartCaught = (std::string(error.what()) == "sceNetPppoeStart not implemented");
+    }
+    Require(sceNetPppoeStartCaught);
+    bool sceNetPppoeStopCaught = false;
+    try {
+        sceNetPppoeStop();
+    } catch (const std::runtime_error& error) {
+        sceNetPppoeStopCaught = (std::string(error.what()) == "sceNetPppoeStop not implemented");
+    }
+    Require(sceNetPppoeStopCaught);
+    bool sceNetBandwidthControlSetDefaultParamCaught = false;
+    try {
+        sceNetBandwidthControlSetDefaultParam(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetBandwidthControlSetDefaultParamCaught = (std::string(error.what()) == "sceNetBandwidthControlSetDefaultParam not implemented");
+    }
+    Require(sceNetBandwidthControlSetDefaultParamCaught);
+    bool sceNetBandwidthControlGetDefaultParamCaught = false;
+    try {
+        sceNetBandwidthControlGetDefaultParam(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetBandwidthControlGetDefaultParamCaught = (std::string(error.what()) == "sceNetBandwidthControlGetDefaultParam not implemented");
+    }
+    Require(sceNetBandwidthControlGetDefaultParamCaught);
+    bool sceNetBandwidthControlGetDataTrafficCaught = false;
+    try {
+        sceNetBandwidthControlGetDataTraffic(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetBandwidthControlGetDataTrafficCaught = (std::string(error.what()) == "sceNetBandwidthControlGetDataTraffic not implemented");
+    }
+    Require(sceNetBandwidthControlGetDataTrafficCaught);
+    bool sceNetConfigSetDefaultScopeCaught = false;
+    try {
+        sceNetConfigSetDefaultScope(0, nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigSetDefaultScopeCaught = (std::string(error.what()) == "sceNetConfigSetDefaultScope not implemented");
+    }
+    Require(sceNetConfigSetDefaultScopeCaught);
+    bool sceNetConfigRoutingStartCaught = false;
+    try {
+        sceNetConfigRoutingStart(0, 0, nullptr, nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigRoutingStartCaught = (std::string(error.what()) == "sceNetConfigRoutingStart not implemented");
+    }
+    Require(sceNetConfigRoutingStartCaught);
+    bool sceNetConfigRoutingStopCaught = false;
+    try {
+        sceNetConfigRoutingStop();
+    } catch (const std::runtime_error& error) {
+        sceNetConfigRoutingStopCaught = (std::string(error.what()) == "sceNetConfigRoutingStop not implemented");
+    }
+    Require(sceNetConfigRoutingStopCaught);
+    bool sceNetConfigRoutingShowRoutingConfigCaught = false;
+    try {
+        sceNetConfigRoutingShowRoutingConfig();
+    } catch (const std::runtime_error& error) {
+        sceNetConfigRoutingShowRoutingConfigCaught = (std::string(error.what()) == "sceNetConfigRoutingShowRoutingConfig not implemented");
+    }
+    Require(sceNetConfigRoutingShowRoutingConfigCaught);
+    bool sceNetConfigRoutingShowtCtlVarCaught = false;
+    try {
+        sceNetConfigRoutingShowtCtlVar(nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetConfigRoutingShowtCtlVarCaught = (std::string(error.what()) == "sceNetConfigRoutingShowtCtlVar not implemented");
+    }
+    Require(sceNetConfigRoutingShowtCtlVarCaught);
+    bool sceNetGetStatisticsInfoInternalCaught = false;
+    try {
+        sceNetGetStatisticsInfoInternal(nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetGetStatisticsInfoInternalCaught = (std::string(error.what()) == "sceNetGetStatisticsInfoInternal not implemented");
+    }
+    Require(sceNetGetStatisticsInfoInternalCaught);
+    bool sceNetDumpAbortCaught = false;
+    try {
+        sceNetDumpAbort(0, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetDumpAbortCaught = (std::string(error.what()) == "sceNetDumpAbort not implemented");
+    }
+    Require(sceNetDumpAbortCaught);
+    bool sceNetDumpCreateCaught = false;
+    try {
+        sceNetDumpCreate(nullptr, 0, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetDumpCreateCaught = (std::string(error.what()) == "sceNetDumpCreate not implemented");
+    }
+    Require(sceNetDumpCreateCaught);
+    bool sceNetDumpSetFilterParamCaught = false;
+    try {
+        sceNetDumpSetFilterParam(0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetDumpSetFilterParamCaught = (std::string(error.what()) == "sceNetDumpSetFilterParam not implemented");
+    }
+    Require(sceNetDumpSetFilterParamCaught);
+    bool sceNetDumpDestroyCaught = false;
+    try {
+        sceNetDumpDestroy(0);
+    } catch (const std::runtime_error& error) {
+        sceNetDumpDestroyCaught = (std::string(error.what()) == "sceNetDumpDestroy not implemented");
+    }
+    Require(sceNetDumpDestroyCaught);
+    bool sceNetDumpReadCaught = false;
+    try {
+        sceNetDumpRead(0, nullptr, 0, nullptr);
+    } catch (const std::runtime_error& error) {
+        sceNetDumpReadCaught = (std::string(error.what()) == "sceNetDumpRead not implemented");
+    }
+    Require(sceNetDumpReadCaught);
+    bool sceNetEmulationDebugSettingsSetCaught = false;
+    try {
+        sceNetEmulationDebugSettingsSet(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetEmulationDebugSettingsSetCaught = (std::string(error.what()) == "sceNetEmulationDebugSettingsSet not implemented");
+    }
+    Require(sceNetEmulationDebugSettingsSetCaught);
+    bool sceNetEmulationDebugSettingsGetCaught = false;
+    try {
+        sceNetEmulationDebugSettingsGet(nullptr, 0);
+    } catch (const std::runtime_error& error) {
+        sceNetEmulationDebugSettingsGetCaught = (std::string(error.what()) == "sceNetEmulationDebugSettingsGet not implemented");
+    }
+    Require(sceNetEmulationDebugSettingsGetCaught);
 }
