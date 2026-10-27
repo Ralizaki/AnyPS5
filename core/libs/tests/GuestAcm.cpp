@@ -11,6 +11,23 @@ static void Require(bool value) {
     if (!value) std::abort();
 }
 
+template <typename TCall>
+static bool ReportsNotImplemented(const char* name, TCall call) {
+    try {
+        call();
+    } catch (const std::runtime_error& error) {
+        return std::string(error.what()) == std::string(name) + " not implemented";
+    }
+    return false;
+}
+
+static void TestUnimplemented() {
+    Require(ReportsNotImplemented("sceAcmBatchJobPriority", [] { sceAcmBatchJobPriority(nullptr, 0); }));
+    Require(ReportsNotImplemented("sceAcm_ConvReverb_SharedIr", [] { sceAcm_ConvReverb_SharedIr(); }));
+    Require(ReportsNotImplemented("sceAcm_IFFT", [] { sceAcm_IFFT(); }));
+    Require(ReportsNotImplemented("sceAcmBatchJobNotification", [] { sceAcmBatchJobNotification(); }));
+}
+
 constexpr int BadContext = static_cast<int>(0x81940002);
 constexpr int BadPointer = static_cast<int>(0x81940006);
 
@@ -116,5 +133,6 @@ int main() {
     Require(sceAcmContextDestroy(context2) == 0);
     Require(sceAcmContextDestroy(context2) == BadContext);
 
+    TestUnimplemented();
     return 0;
 }
