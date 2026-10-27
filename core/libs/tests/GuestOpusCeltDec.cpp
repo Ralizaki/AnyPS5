@@ -155,4 +155,6 @@ int main() {
     Require(sceOpusCeltDecTerminate(&context) == 0);
     RequireThrows([&] { sceOpusCeltDecTerminate(&context); });
     RequireThrows([&] { sceOpusCeltDecCreateEx(&context, state.data(), 48000, 2); });
+    RequireThrows([&] { sceOpusCeltDecCreate(); });
+    RequireThrows([&] { sceOpusCeltDecCtl(); });
 }
