@@ -7,6 +7,8 @@
 #include <cstdint>
 #include <cstdlib>
 #include <cstring>
+#include <stdexcept>
+#include <string>
 
 namespace {
 
@@ -71,5 +73,19 @@ int main() {
     Require(frees == 1);
     Require(PKFree_nid_postfix(nullptr) == 0);
     Require(frees == 1);
+    bool readISCaught = false;
+    try {
+        readIS_nid_postfix(nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        readISCaught = (std::string(error.what()) == "readIS_nid_postfix not implemented");
+    }
+    Require(readISCaught);
+    bool writeISCaught = false;
+    try {
+        writeIS_nid_postfix(nullptr, nullptr);
+    } catch (const std::runtime_error& error) {
+        writeISCaught = (std::string(error.what()) == "writeIS_nid_postfix not implemented");
+    }
+    Require(writeISCaught);
     return 0;
 }
