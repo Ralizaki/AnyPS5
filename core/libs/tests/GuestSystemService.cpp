@@ -151,4 +151,24 @@ int main() {
     event.event_type = 7;
     Require(sceSystemServiceReceiveEvent(&event) == SYSTEM_SERVICE_ERROR_NO_EVENT);
     TestPlayerDialogParam();
+    Require(Throws([] { sceSystemServiceLaunchSystemDeeplink(); }));
+    Require(Throws([] { sceShellCoreUtilLaunchByUriParamInit(); }));
+    Require(Throws([] { sceSystemServiceTelemetrySetData2WithUserId(); }));
+    Require(Throws([] { sceSystemServiceGetAppStatusListContainsDaemon(); }));
+    Require(Throws([] { sceLncUtilGetSpmemAllocatorConfigValue(); }));
+    Require(Throws([] { sceCsbMgrGetLocalSandboxInfo(); }));
+    Require(Throws([] { sceCsbMgrSetLocalSandboxInfo(); }));
+    Require(Throws([] { sceCsbMgrIssueStreamingSandboxInfo(); }));
+    Require(Throws([] { sceReportSequenceHandlerRequestReport(); }));
+    Require(Throws([] { sceReportSequenceHandlerCancelReport(); }));
+    Require(Throws([] { sceReportSequenceHandlerExistsEvent(); }));
+    Require(Throws([] { sceReportSequenceHandlerUpdateEventCache(); }));
+    Require(Throws([] { sceReportSequenceHandlerGetEventCache(); }));
+    Require(Throws([] { sceLncUtilRegisterCallEntries(); }));
+    Require(Throws([] { sceLncUtilGetSpmemConfigJson(); }));
+    Require(Throws([] { sceLncUtilExportSpmemConfigJson(); }));
+    Require(Throws([] { sceLncUtilImportSpmemConfigJson(); }));
+    Require(Throws([] { sceShellCoreUtilExitAppWithValue(); }));
+    Require(Throws([] { sceShellCoreUtilNpDebugSpecialNotification(); }));
+    Require(Throws([] { sceShellCoreUtilNotifyConnectAccountStatusChanged(); }));
 }
