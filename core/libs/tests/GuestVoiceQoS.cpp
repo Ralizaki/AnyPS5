@@ -121,6 +121,7 @@ int main(int argc, char** argv) {
     Require(sceVoiceQoSEnd() == notInitialized);
     Require(sceVoiceQoSInit(nullptr, 0x40000, appType) == argumentInvalid);
 
+    Require(NotImplemented([] { sceVoiceQoSSetConnectionAttribute(0, 0, nullptr, 0); }));
     Require(NotImplemented([] { sceVoiceQoSGetLocalEndpointAttribute(0, 0, nullptr, 0); }));
     Require(NotImplemented([] { sceVoiceQoSGetRemoteEndpointAttribute(1, 1, nullptr, 0); }));
     Require(NotImplemented([] { sceVoiceQoSGetConnectionAttribute(1, 1, nullptr, 0); }));
