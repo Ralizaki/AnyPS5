@@ -310,5 +310,19 @@ int main(int argc, char** argv) {
     RunLayout(argv[0], "--hash-table-only", {{"playgo-hash-table.dat", "x"}});
     RunLayout(argv[0], "--invalid-chunk-table", {{"playgo-chunk.dat", "not a chunk table"}});
     RunLayout(argv[0], "--invalid-chunk-table", {{"playgo-chunk.dat", ChunkTableFile("plgo", 0)}});
+    bool scePlayGoRequestNextChunkCaught = false;
+    try {
+        scePlayGoRequestNextChunk();
+    } catch (const std::runtime_error& error) {
+        scePlayGoRequestNextChunkCaught = (std::string(error.what()) == "scePlayGoRequestNextChunk not implemented");
+    }
+    Require(scePlayGoRequestNextChunkCaught);
+    bool scePlayGoSnapshotCaught = false;
+    try {
+        scePlayGoSnapshot();
+    } catch (const std::runtime_error& error) {
+        scePlayGoSnapshotCaught = (std::string(error.what()) == "scePlayGoSnapshot not implemented");
+    }
+    Require(scePlayGoSnapshotCaught);
     return 0;
 }
