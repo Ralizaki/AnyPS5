@@ -77,5 +77,15 @@ int main() {
     Require(ReportsNotImplemented("qk043QPsrZU", [] { return sceKernelUnknown18(); }));
     Require(ReportsNotImplemented("uDGXwUKqi8s", [] { return sceKernelUnknown19(); }));
     Require(ReportsNotImplemented("__Ux86_64_setcontext", [] { return __Ux86_64_setcontext(); }));
+    Require(ReportsNotImplemented("amd64_set_fsbase_nid_postfix", [] { return amd64_set_fsbase_nid_postfix(); }));
+    Require(ReportsNotImplemented("blockpool_batch_nid_postfix", [] { return blockpool_batch_nid_postfix(); }));
+    Require(ReportsNotImplemented("blockpool_map_nid_postfix", [] { return blockpool_map_nid_postfix(); }));
+    Require(ReportsNotImplemented("blockpool_open_nid_postfix", [] { return blockpool_open_nid_postfix(); }));
+    Require(ReportsNotImplemented("blockpool_unmap_nid_postfix", [] { return blockpool_unmap_nid_postfix(); }));
+    Require(ReportsNotImplemented("cpuset_nid_postfix", [] { return cpuset_nid_postfix(); }));
+    Require(ReportsNotImplemented("cpuset_getid_nid_postfix", [] { return cpuset_getid_nid_postfix(); }));
+    Require(ReportsNotImplemented("cpuset_setid_nid_postfix", [] { return cpuset_setid_nid_postfix(); }));
+    Require(ReportsNotImplemented("dynlib_get_obj_member_nid_postfix", [] { return dynlib_get_obj_member_nid_postfix(); }));
+    Require(ReportsNotImplemented("futimesat_nid_postfix", [] { return futimesat_nid_postfix(); }));
     return 0;
 }
