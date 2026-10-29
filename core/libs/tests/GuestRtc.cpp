@@ -11,6 +11,7 @@
 #include <exception>
 #include <filesystem>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 #include <initializer_list>
@@ -983,4 +984,11 @@ int main(int argc, char** argv) {
     Require(sceRtcFormatRFC3339(ranges, &shifted, -1) == 0 && std::strcmp(ranges, "9999-12-31T23:59:00.00-00:01") == 0);
     Require(sceRtcInit() == 0);
     Require(sceRtcEnd() == 0);
+    bool sceRtcSetConfCaught = false;
+    try {
+        sceRtcSetConf(0, 0, 0, 0);
+    } catch (const std::runtime_error& error) {
+        sceRtcSetConfCaught = (std::string(error.what()) == "sceRtcSetConf not implemented");
+    }
+    Require(sceRtcSetConfCaught);
 }
